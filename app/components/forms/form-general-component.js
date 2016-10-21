@@ -9,17 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var FormEditorsComponent = (function () {
-    function FormEditorsComponent() {
+var FormGeneralComponent = (function () {
+    function FormGeneralComponent() {
     }
-    FormEditorsComponent = __decorate([
+    FormGeneralComponent = __decorate([
         core_1.Component({
-            selector: 'form-editors',
-            templateUrl: 'app/componets/forms/view/editors.html'
+            selector: 'form-general',
+            templateUrl: 'app/componets/forms/view/general.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], FormEditorsComponent);
-    return FormEditorsComponent;
+    ], FormGeneralComponent);
+    return FormGeneralComponent;
 }());
-exports.FormEditorsComponent = FormEditorsComponent;
-//# sourceMappingURL=form-editors-component.1.js.map
+exports.FormGeneralComponent = FormGeneralComponent;
+//# sourceMappingURL=form-general-component.js.map

@@ -12,7 +12,7 @@ import 'bootstrap';
 @Component({
     selector:'dashboard',
     templateUrl:'app/components/dashboard/view/dashboard.html',
-    directives :[HeaderComponent,SidebarComponent,RightSidebarComponent,FooterComponent,]
+    directives :[HeaderComponent,SidebarComponent,RightSidebarComponent,FooterComponent]
 })
 
 

@@ -421,7 +421,7 @@ var DashBoardComponent = (function () {
         core_1.Component({
             selector: 'dashboard',
             templateUrl: 'app/components/dashboard/view/dashboard.html',
-            directives: [header_component_1.HeaderComponent, sidebar_component_1.SidebarComponent, right_sidebar_component_1.RightSidebarComponent, footer_component_1.FooterComponent,]
+            directives: [header_component_1.HeaderComponent, sidebar_component_1.SidebarComponent, right_sidebar_component_1.RightSidebarComponent, footer_component_1.FooterComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], DashBoardComponent);

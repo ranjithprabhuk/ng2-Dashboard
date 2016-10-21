@@ -14,6 +14,7 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 var router_1 = require('@angular/router');
+var common_1 = require('@angular/common');
 //custom module dependencies
 var dashboard_component_1 = require('./components/dashboard/dashboard-component');
 var home_component_1 = require('./components/home/home-component');
@@ -27,7 +28,8 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, router_1.RouterModule.forRoot(app_routing_1.DashboardRoutes)],
             declarations: [dashboard_component_1.DashBoardComponent, home_component_1.HomeComponent, widget_component_1.WidgetComponent],
-            bootstrap: [dashboard_component_1.DashBoardComponent] //include the module which will start the application
+            bootstrap: [dashboard_component_1.DashBoardComponent],
+            providers: [{ provide: common_1.APP_BASE_HREF, useValue: '/' }]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

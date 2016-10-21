@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router';
+import {APP_BASE_HREF} from '@angular/common';
 
 
 //custom module dependencies
@@ -22,6 +23,7 @@ import {DashboardRoutes} from './routing/app.routing';
 @NgModule({
   imports:      [ BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(DashboardRoutes) ],  //include angular dependencies to imports
   declarations: [ DashBoardComponent,HomeComponent,WidgetComponent ],  //include custom module to declarations
-  bootstrap:    [ DashBoardComponent ]   //include the module which will start the application
+  bootstrap:    [ DashBoardComponent ],   //include the module which will start the application
+  providers: [{provide: APP_BASE_HREF, useValue : '/' }]
 })
 export class AppModule { }
