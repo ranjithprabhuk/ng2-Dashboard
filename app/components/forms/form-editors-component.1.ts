@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 
 @Component({
-    selector: 'form-editors',
-    templateUrl: 'app/componets/forms/view/editors.html'
+    selector: 'form-general',
+    templateUrl: 'app/componets/forms/view/general.html'
 })
 
-export class FormEditorsComponent {
+export class FormGeneralComponent {
     
 }
