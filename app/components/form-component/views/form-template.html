@@ -1,0 +1,71 @@
+
+
+<div class="container">
+    <h2>Implementing Forms</h2>
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            Angular 2 Form
+        </div>
+        <div class="panel-body">
+            <div class="col-md-6">
+                <form (ngSubmit)="addEmployee(formValues)" #employeeForm="ngForm">
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" name="name" [(ngModel)]="formValues.name" class="form-control" required #name="ngModel">
+                        <label class="text-danger pull-right" [hidden]="name.valid || name.untouched">Name is Required</label>
+                        <div>Valid: {{name.valid}}</div>
+                        <div>invalid: {{name.invalid}}</div>
+                        <div>touched: {{name.touched}}</div>
+                        <div>untouched: {{name.untouched}}</div>
+                        <div>pristine: {{name.pristine}}</div>
+                        <div>dirty: {{name.dirty}}</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" [(ngModel)]="formValues.email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Designation</label>
+                        <input type="text" name="designation" [(ngModel)]="formValues.designation" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="sport">Select Sport</label>
+                        <select class="form-control" name="sport" [(ngModel)]="formValues.sports">
+                            <option *ngFor="let sport of sportsList" [value]="sport">{{sport}}</option>
+                        </select>
+                    </div>
+                    <hr>
+                    <input type="submit" class="btn btn-success" value="Submit" [disabled]="!employeeForm.valid">
+                    <input type="reset" class="btn btn-danger" value="Clear">
+                </form>
+            </div>
+            <div class="col-md-6">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Designation</th>
+                                <th>Sports</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of employeeDetails; let index='index';">
+                                <td>{{data.name}}</td>
+                                <td>{{data.email}}</td>
+                                <td>{{data.designation}}</td>
+                                <td>{{data.sports}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-info btn-sm" (click)="editEmployee(index);"><span class="glyphicon glyphicon-pencil"></span></button>
+                                    <button type="button" class="btn btn-danger btn-sm" (click)="deleteEmployee(index);"><span class="glyphicon glyphicon-trash"></span></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
