@@ -15,7 +15,7 @@ var FormAdvancedComponent = (function () {
     FormAdvancedComponent = __decorate([
         core_1.Component({
             selector: 'form-advanced',
-            templateUrl: 'app/componets/forms/view/advanced.html'
+            templateUrl: 'app/components/forms/view/advanced.html'
         }), 
         __metadata('design:paramtypes', [])
     ], FormAdvancedComponent);

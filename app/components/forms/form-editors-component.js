@@ -15,7 +15,7 @@ var FormEditorsComponent = (function () {
     FormEditorsComponent = __decorate([
         core_1.Component({
             selector: 'form-editors',
-            templateUrl: 'app/componets/forms/view/editors.html'
+            templateUrl: 'app/components/forms/view/editors.html'
         }), 
         __metadata('design:paramtypes', [])
     ], FormEditorsComponent);

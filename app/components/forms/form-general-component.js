@@ -15,7 +15,7 @@ var FormGeneralComponent = (function () {
     FormGeneralComponent = __decorate([
         core_1.Component({
             selector: 'form-general',
-            templateUrl: 'app/componets/forms/view/general.html'
+            templateUrl: 'app/components/forms/view/general.html'
         }), 
         __metadata('design:paramtypes', [])
     ], FormGeneralComponent);
