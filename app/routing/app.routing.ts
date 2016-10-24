@@ -32,7 +32,8 @@ const DashboardRoutes:RouterConfig = [
         children :[
             {path:'compose',component:ComposeMailComponent},
             {path:'inbox',component:InboxComponent}
-        ]    }
+        ]    
+    }
    
     
 ];

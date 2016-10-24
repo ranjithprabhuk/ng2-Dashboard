@@ -17,8 +17,8 @@ import {DashBoardComponent} from './components/dashboard/dashboard-component';
 @NgModule({
   imports:      [ BrowserModule, FormsModule, HttpModule, DashboardRoutingModule ],  //include angular dependencies to imports
   declarations: [ DashBoardComponent],  //include custom module to declarations
-  bootstrap:    [ DashBoardComponent ],   //include the module which will start the application
-  providers:    [{provide: APP_BASE_HREF, useValue : '/' }]  //define the base hyperlink reference of the application
+  bootstrap:    [ DashBoardComponent ]//,   //include the module which will start the application
+ // providers:    [{provide: APP_BASE_HREF, useValue : '/' }]  //define the base hyperlink reference of the application
 })
 
 export class AppModule { }

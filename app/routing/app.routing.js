@@ -33,10 +33,7 @@ var DashboardRoutes = [
     { path: 'compose-mail', component: compose_mail_component_1.ComposeMailComponent },
     { path: 'read-mail', component: read_mail_component_1.ReadMailComponent },
     { path: 'mailbox', component: mailbox_component_1.MailBoxComponent,
-        children: [
-            { path: 'compose', component: compose_mail_component_1.ComposeMailComponent },
-            { path: 'inbox', component: inbox_component_1.InboxComponent }
-        ] }
+    }
 ];
 var MailBoxRoutes = [
     { path: 'mailbox', component: mailbox_component_1.MailBoxComponent,
