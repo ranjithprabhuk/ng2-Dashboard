@@ -18,7 +18,7 @@ import { MailBoxComponent } from '../components/mailbox/mailbox-component';
 import { InboxComponent } from '../components/mailbox/inbox-component';
 
 //define the application routing configuration
-const DashboardRoutes:RouterConfig = [
+export const DashboardRoutes:RouterConfig = [
     {path:'',redirectTo:'/home',pathMatch:'full'},  //default page load configuaration goes here
     {path:'home',component: HomeComponent},
     {path:'widgets',component: WidgetComponent},
@@ -30,21 +30,13 @@ const DashboardRoutes:RouterConfig = [
     {path:'read-mail',component: ReadMailComponent},
     {path:'mailbox',component: MailBoxComponent,
         children :[
-            {path:'compose',component:ComposeMailComponent},
-            {path:'inbox',component:InboxComponent}
+            {path:'',redirectTo:'/inbox',pathMatch:'full'},
+            {path:'inbox',component:InboxComponent},
+            {path:'compose',component:ComposeMailComponent}
         ]    
     }
    
     
-];
-
-const MailBoxRoutes:RouterConfig = [
-     {path:'mailbox',component: MailBoxComponent,
-        children :[
-            {path:'compose',component:ComposeMailComponent},
-            {path:'inbox',component:InboxComponent}
-        ]    
-    }
 ];
 
 
