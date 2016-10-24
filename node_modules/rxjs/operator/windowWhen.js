@@ -120,6 +120,7 @@ var WindowSubscriber = (function (_super) {
         }
         else {
             this.add(this.closingNotification = subscribeToResult_1.subscribeToResult(this, closingNotifier));
+            this.add(window);
         }
     };
     return WindowSubscriber;

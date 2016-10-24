@@ -5,7 +5,6 @@
 
 var parser = require('socket.io-parser');
 var debug = require('debug')('socket.io:client');
-var url = require('url');
 
 /**
  * Module exports.
@@ -59,7 +58,7 @@ Client.prototype.setup = function(){
  * @api private
  */
 
-Client.prototype.connect = function(name, query){
+Client.prototype.connect = function(name){
   debug('connecting to namespace %s', name);
   var nsp = this.server.nsps[name];
   if (!nsp) {
@@ -73,7 +72,7 @@ Client.prototype.connect = function(name, query){
   }
 
   var self = this;
-  var socket = nsp.add(this, query, function(){
+  var socket = nsp.add(this, function(){
     self.sockets[socket.id] = socket;
     self.nsps[nsp.name] = socket;
 
@@ -187,7 +186,7 @@ Client.prototype.ondata = function(data){
 
 Client.prototype.ondecoded = function(packet) {
   if (parser.CONNECT == packet.type) {
-    this.connect(url.parse(packet.nsp).pathname, url.parse(packet.nsp, true).query);
+    this.connect(packet.nsp);
   } else {
     var socket = this.nsps[packet.nsp];
     if (socket) {

@@ -60,7 +60,7 @@ var RetrySubscriber = (function (_super) {
             }
             this.unsubscribe();
             this.isStopped = false;
-            this.closed = false;
+            this.isUnsubscribed = false;
             source.subscribe(this);
         }
     };

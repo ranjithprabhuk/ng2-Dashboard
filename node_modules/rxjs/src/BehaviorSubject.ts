@@ -1,7 +1,8 @@
-import { Subject } from './Subject';
-import { Subscriber } from './Subscriber';
-import { Subscription, ISubscription } from './Subscription';
-import { ObjectUnsubscribedError } from './util/ObjectUnsubscribedError';
+import {Subject} from './Subject';
+import {Subscriber} from './Subscriber';
+import {TeardownLogic, ISubscription} from './Subscription';
+import {throwError} from './util/throwError';
+import {ObjectUnsubscribedError} from './util/ObjectUnsubscribedError';
 
 /**
  * @class BehaviorSubject<T>
@@ -12,29 +13,34 @@ export class BehaviorSubject<T> extends Subject<T> {
     super();
   }
 
-  get value(): T {
-    return this.getValue();
-  }
-
-  protected _subscribe(subscriber: Subscriber<T>): Subscription {
-    const subscription = super._subscribe(subscriber);
-    if (subscription && !(<ISubscription>subscription).closed) {
-      subscriber.next(this._value);
-    }
-    return subscription;
-  }
-
   getValue(): T {
-    if (this.hasError) {
-      throw this.thrownError;
-    } else if (this.closed) {
-      throw new ObjectUnsubscribedError();
+    if (this.hasErrored) {
+      throwError(this.errorValue);
+    } else if (this.isUnsubscribed) {
+      throwError(new ObjectUnsubscribedError());
     } else {
       return this._value;
     }
   }
 
-  next(value: T): void {
-    super.next(this._value = value);
+  get value(): T {
+    return this.getValue();
+  }
+
+  protected _subscribe(subscriber: Subscriber<T>): TeardownLogic {
+    const subscription = super._subscribe(subscriber);
+    if (subscription && !(<ISubscription> subscription).isUnsubscribed) {
+      subscriber.next(this._value);
+    }
+    return subscription;
+  }
+
+  protected _next(value: T): void {
+    super._next(this._value = value);
+  }
+
+  protected _error(err: any): void {
+    this.hasErrored = true;
+    super._error(this.errorValue = err);
   }
 }

@@ -1,22 +1,21 @@
 "use strict";
 var root_1 = require('../util/root');
-function getSymbolObservable(context) {
-    var $$observable;
-    var Symbol = context.Symbol;
-    if (typeof Symbol === 'function') {
-        if (Symbol.observable) {
-            $$observable = Symbol.observable;
-        }
-        else {
-            $$observable = Symbol('observable');
-            Symbol.observable = $$observable;
-        }
+var Symbol = root_1.root.Symbol;
+if (typeof Symbol === 'function') {
+    if (Symbol.observable) {
+        exports.$$observable = Symbol.observable;
     }
     else {
-        $$observable = '@@observable';
+        if (typeof Symbol.for === 'function') {
+            exports.$$observable = Symbol.for('observable');
+        }
+        else {
+            exports.$$observable = Symbol('observable');
+        }
+        Symbol.observable = exports.$$observable;
     }
-    return $$observable;
 }
-exports.getSymbolObservable = getSymbolObservable;
-exports.$$observable = getSymbolObservable(root_1.root);
+else {
+    exports.$$observable = '@@observable';
+}
 //# sourceMappingURL=observable.js.map

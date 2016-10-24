@@ -17,10 +17,8 @@ var __extends = (this && this.__extends) || function (d, b) {
 var EmptyError = (function (_super) {
     __extends(EmptyError, _super);
     function EmptyError() {
-        var err = _super.call(this, 'no elements in sequence');
-        this.name = err.name = 'EmptyError';
-        this.stack = err.stack;
-        this.message = err.message;
+        _super.call(this, 'no elements in sequence');
+        this.name = 'EmptyError';
     }
     return EmptyError;
 }(Error));

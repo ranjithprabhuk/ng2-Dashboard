@@ -21,7 +21,6 @@ var ForkJoinObservable = (function (_super) {
         this.sources = sources;
         this.resultSelector = resultSelector;
     }
-    /* tslint:enable:max-line-length */
     /**
      * @param sources
      * @return {any}

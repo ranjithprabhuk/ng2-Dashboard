@@ -1,5 +1,5 @@
 {
-  "name": "angular2-quickstart",
+  "name": "ng2-Dashboard",
   "version": "1.0.0",
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
@@ -9,7 +9,7 @@
     "tsc:w": "tsc -w",
     "typings": "typings"
   },
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@angular/common": "2.0.0",
     "@angular/compiler": "2.0.0",
@@ -18,7 +18,7 @@
     "@angular/http": "2.0.0",
     "@angular/platform-browser": "2.0.0",
     "@angular/platform-browser-dynamic": "2.0.0",
-    "@angular/router": "3.0.0",
+    "@angular/router": "^3.0.0-alpha.6",
     "@angular/upgrade": "2.0.0",
     "angular2-in-memory-web-api": "0.0.20",
     "bootstrap": "^3.3.6",

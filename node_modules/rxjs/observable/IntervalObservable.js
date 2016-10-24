@@ -68,7 +68,7 @@ var IntervalObservable = (function (_super) {
     IntervalObservable.dispatch = function (state) {
         var index = state.index, subscriber = state.subscriber, period = state.period;
         subscriber.next(index);
-        if (subscriber.closed) {
+        if (subscriber.isUnsubscribed) {
             return;
         }
         state.index += 1;

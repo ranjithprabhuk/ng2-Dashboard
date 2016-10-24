@@ -9,21 +9,21 @@ var Subscription_1 = require('../Subscription');
 /**
  * Returns an Observable that mirrors the source Observable, but will call a specified function when
  * the source terminates on complete or error.
- * @param {function} callback function to be called when source terminates.
+ * @param {function} finallySelector function to be called when source terminates.
  * @return {Observable} an Observable that mirrors the source, but will call the specified function on termination.
  * @method finally
  * @owner Observable
  */
-function _finally(callback) {
-    return this.lift(new FinallyOperator(callback));
+function _finally(finallySelector) {
+    return this.lift(new FinallyOperator(finallySelector));
 }
 exports._finally = _finally;
 var FinallyOperator = (function () {
-    function FinallyOperator(callback) {
-        this.callback = callback;
+    function FinallyOperator(finallySelector) {
+        this.finallySelector = finallySelector;
     }
     FinallyOperator.prototype.call = function (subscriber, source) {
-        return source._subscribe(new FinallySubscriber(subscriber, this.callback));
+        return source._subscribe(new FinallySubscriber(subscriber, this.finallySelector));
     };
     return FinallyOperator;
 }());
@@ -34,9 +34,9 @@ var FinallyOperator = (function () {
  */
 var FinallySubscriber = (function (_super) {
     __extends(FinallySubscriber, _super);
-    function FinallySubscriber(destination, callback) {
+    function FinallySubscriber(destination, finallySelector) {
         _super.call(this, destination);
-        this.add(new Subscription_1.Subscription(callback));
+        this.add(new Subscription_1.Subscription(finallySelector));
     }
     return FinallySubscriber;
 }(Subscriber_1.Subscriber));

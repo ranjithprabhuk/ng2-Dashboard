@@ -150,9 +150,9 @@ Namespace.prototype['in'] = function(name){
  * @api private
  */
 
-Namespace.prototype.add = function(client, query, fn){
+Namespace.prototype.add = function(client, fn){
   debug('adding socket to nsp %s', this.name);
-  var socket = new Socket(this, client, query);
+  var socket = new Socket(this, client);
   var self = this;
   this.run(socket, function(err){
     process.nextTick(function(){

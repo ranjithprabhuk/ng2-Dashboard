@@ -17,9 +17,6 @@ var ScalarObservable = (function (_super) {
         this.value = value;
         this.scheduler = scheduler;
         this._isScalar = true;
-        if (scheduler) {
-            this._isScalar = false;
-        }
     }
     ScalarObservable.create = function (value, scheduler) {
         return new ScalarObservable(value, scheduler);
@@ -31,7 +28,7 @@ var ScalarObservable = (function (_super) {
             return;
         }
         subscriber.next(value);
-        if (subscriber.closed) {
+        if (subscriber.isUnsubscribed) {
             return;
         }
         state.done = true;
@@ -47,7 +44,7 @@ var ScalarObservable = (function (_super) {
         }
         else {
             subscriber.next(value);
-            if (!subscriber.closed) {
+            if (!subscriber.isUnsubscribed) {
                 subscriber.complete();
             }
         }

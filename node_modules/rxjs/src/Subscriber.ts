@@ -1,8 +1,8 @@
-import { isFunction } from './util/isFunction';
-import { Observer, PartialObserver } from './Observer';
-import { Subscription } from './Subscription';
-import { empty as emptyObserver } from './Observer';
-import { $$rxSubscriber } from './symbol/rxSubscriber';
+import {isFunction} from './util/isFunction';
+import {Observer, PartialObserver} from './Observer';
+import {Subscription} from './Subscription';
+import {$$rxSubscriber} from './symbol/rxSubscriber';
+import {empty as emptyObserver} from './Observer';
 
 /**
  * Implements the {@link Observer} interface and extends the
@@ -15,8 +15,6 @@ import { $$rxSubscriber } from './symbol/rxSubscriber';
  * @class Subscriber<T>
  */
 export class Subscriber<T> extends Subscription implements Observer<T> {
-
-  [$$rxSubscriber]() { return this; }
 
   /**
    * A static factory for a Subscriber, given a (potentially partial) definition
@@ -42,7 +40,7 @@ export class Subscriber<T> extends Subscription implements Observer<T> {
   public syncErrorThrowable: boolean = false;
 
   protected isStopped: boolean = false;
-  protected destination: PartialObserver<any>; // this `any` is the escape hatch to erase extra type param (e.g. R)
+  protected destination: PartialObserver<any>;
 
   /**
    * @param {Observer|function(value: T): void} [destinationOrNext] A partially
@@ -124,7 +122,7 @@ export class Subscriber<T> extends Subscription implements Observer<T> {
   }
 
   unsubscribe(): void {
-    if (this.closed) {
+    if (this.isUnsubscribed) {
       return;
     }
     this.isStopped = true;
@@ -143,6 +141,10 @@ export class Subscriber<T> extends Subscription implements Observer<T> {
   protected _complete(): void {
     this.destination.complete();
     this.unsubscribe();
+  }
+
+  [$$rxSubscriber]() {
+    return this;
   }
 }
 

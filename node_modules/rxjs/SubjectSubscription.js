@@ -12,24 +12,24 @@ var Subscription_1 = require('./Subscription');
  */
 var SubjectSubscription = (function (_super) {
     __extends(SubjectSubscription, _super);
-    function SubjectSubscription(subject, subscriber) {
+    function SubjectSubscription(subject, observer) {
         _super.call(this);
         this.subject = subject;
-        this.subscriber = subscriber;
-        this.closed = false;
+        this.observer = observer;
+        this.isUnsubscribed = false;
     }
     SubjectSubscription.prototype.unsubscribe = function () {
-        if (this.closed) {
+        if (this.isUnsubscribed) {
             return;
         }
-        this.closed = true;
+        this.isUnsubscribed = true;
         var subject = this.subject;
         var observers = subject.observers;
         this.subject = null;
-        if (!observers || observers.length === 0 || subject.isStopped || subject.closed) {
+        if (!observers || observers.length === 0 || subject.isUnsubscribed) {
             return;
         }
-        var subscriberIndex = observers.indexOf(this.subscriber);
+        var subscriberIndex = observers.indexOf(this.observer);
         if (subscriberIndex !== -1) {
             observers.splice(subscriberIndex, 1);
         }

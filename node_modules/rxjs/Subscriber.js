@@ -6,8 +6,8 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var isFunction_1 = require('./util/isFunction');
 var Subscription_1 = require('./Subscription');
-var Observer_1 = require('./Observer');
 var rxSubscriber_1 = require('./symbol/rxSubscriber');
+var Observer_1 = require('./Observer');
 /**
  * Implements the {@link Observer} interface and extends the
  * {@link Subscription} class. While the {@link Observer} is the public API for
@@ -60,7 +60,6 @@ var Subscriber = (function (_super) {
                 break;
         }
     }
-    Subscriber.prototype[rxSubscriber_1.$$rxSubscriber] = function () { return this; };
     /**
      * A static factory for a Subscriber, given a (potentially partial) definition
      * of an Observer.
@@ -115,7 +114,7 @@ var Subscriber = (function (_super) {
         }
     };
     Subscriber.prototype.unsubscribe = function () {
-        if (this.closed) {
+        if (this.isUnsubscribed) {
             return;
         }
         this.isStopped = true;
@@ -131,6 +130,9 @@ var Subscriber = (function (_super) {
     Subscriber.prototype._complete = function () {
         this.destination.complete();
         this.unsubscribe();
+    };
+    Subscriber.prototype[rxSubscriber_1.$$rxSubscriber] = function () {
+        return this;
     };
     return Subscriber;
 }(Subscription_1.Subscription));

@@ -4,34 +4,17 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var AsyncScheduler_1 = require('./AsyncScheduler');
+var AsapAction_1 = require('./AsapAction');
+var QueueScheduler_1 = require('./QueueScheduler');
 var AsapScheduler = (function (_super) {
     __extends(AsapScheduler, _super);
     function AsapScheduler() {
         _super.apply(this, arguments);
     }
-    AsapScheduler.prototype.flush = function () {
-        this.active = true;
-        this.scheduled = undefined;
-        var actions = this.actions;
-        var error;
-        var index = -1;
-        var count = actions.length;
-        var action = actions.shift();
-        do {
-            if (error = action.execute(action.state, action.delay)) {
-                break;
-            }
-        } while (++index < count && (action = actions.shift()));
-        this.active = false;
-        if (error) {
-            while (++index < count && (action = actions.shift())) {
-                action.unsubscribe();
-            }
-            throw error;
-        }
+    AsapScheduler.prototype.scheduleNow = function (work, state) {
+        return new AsapAction_1.AsapAction(this, work).schedule(state);
     };
     return AsapScheduler;
-}(AsyncScheduler_1.AsyncScheduler));
+}(QueueScheduler_1.QueueScheduler));
 exports.AsapScheduler = AsapScheduler;
 //# sourceMappingURL=AsapScheduler.js.map

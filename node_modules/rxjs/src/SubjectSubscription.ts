@@ -1,36 +1,36 @@
-import { Subject } from './Subject';
-import { Observer } from './Observer';
-import { Subscription } from './Subscription';
+import {Subject} from './Subject';
+import {Observer} from './Observer';
+import {Subscription} from './Subscription';
 
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @ignore
  * @extends {Ignored}
  */
-export class SubjectSubscription<T> extends Subscription {
-  closed: boolean = false;
+export class SubjectSubscription extends Subscription {
+  isUnsubscribed: boolean = false;
 
-  constructor(public subject: Subject<T>, public subscriber: Observer<T>) {
+  constructor(public subject: Subject<any>, public observer: Observer<any>) {
     super();
   }
 
   unsubscribe() {
-    if (this.closed) {
+    if (this.isUnsubscribed) {
       return;
     }
 
-    this.closed = true;
+    this.isUnsubscribed = true;
 
     const subject = this.subject;
     const observers = subject.observers;
 
     this.subject = null;
 
-    if (!observers || observers.length === 0 || subject.isStopped || subject.closed) {
+    if (!observers || observers.length === 0 || subject.isUnsubscribed) {
       return;
     }
 
-    const subscriberIndex = observers.indexOf(this.subscriber);
+    const subscriberIndex = observers.indexOf(this.observer);
 
     if (subscriberIndex !== -1) {
       observers.splice(subscriberIndex, 1);

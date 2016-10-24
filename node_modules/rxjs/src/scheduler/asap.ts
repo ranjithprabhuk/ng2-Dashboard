@@ -1,4 +1,3 @@
-import { AsapAction } from './AsapAction';
-import { AsapScheduler } from './AsapScheduler';
+import {AsapScheduler} from './AsapScheduler';
 
-export const asap = new AsapScheduler(AsapAction);
+export const asap = new AsapScheduler();

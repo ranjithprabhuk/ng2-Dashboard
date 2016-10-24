@@ -4,7 +4,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var AsyncAction_1 = require('./AsyncAction');
+var FutureAction_1 = require('./FutureAction');
 var AnimationFrame_1 = require('../util/AnimationFrame');
 /**
  * We need this JSDoc comment for affecting ESDoc.
@@ -13,41 +13,39 @@ var AnimationFrame_1 = require('../util/AnimationFrame');
  */
 var AnimationFrameAction = (function (_super) {
     __extends(AnimationFrameAction, _super);
-    function AnimationFrameAction(scheduler, work) {
-        _super.call(this, scheduler, work);
-        this.scheduler = scheduler;
-        this.work = work;
+    function AnimationFrameAction() {
+        _super.apply(this, arguments);
     }
-    AnimationFrameAction.prototype.requestAsyncId = function (scheduler, id, delay) {
+    AnimationFrameAction.prototype._schedule = function (state, delay) {
         if (delay === void 0) { delay = 0; }
-        // If delay is greater than 0, request as an async action.
-        if (delay !== null && delay > 0) {
-            return _super.prototype.requestAsyncId.call(this, scheduler, id, delay);
+        if (delay > 0) {
+            return _super.prototype._schedule.call(this, state, delay);
         }
-        // Push the action to the end of the scheduler queue.
+        this.delay = delay;
+        this.state = state;
+        var scheduler = this.scheduler;
         scheduler.actions.push(this);
-        // If an animation frame has already been requested, don't request another
-        // one. If an animation frame hasn't been requested yet, request one. Return
-        // the current animation frame request id.
-        return scheduler.scheduled || (scheduler.scheduled = AnimationFrame_1.AnimationFrame.requestAnimationFrame(scheduler.flush.bind(scheduler, null)));
+        if (!scheduler.scheduledId) {
+            scheduler.scheduledId = AnimationFrame_1.AnimationFrame.requestAnimationFrame(function () {
+                scheduler.scheduledId = null;
+                scheduler.flush();
+            });
+        }
+        return this;
     };
-    AnimationFrameAction.prototype.recycleAsyncId = function (scheduler, id, delay) {
-        if (delay === void 0) { delay = 0; }
-        // If delay exists and is greater than 0, recycle as an async action.
-        if (delay !== null && delay > 0) {
-            return _super.prototype.recycleAsyncId.call(this, scheduler, id, delay);
+    AnimationFrameAction.prototype._unsubscribe = function () {
+        var scheduler = this.scheduler;
+        var scheduledId = scheduler.scheduledId, actions = scheduler.actions;
+        _super.prototype._unsubscribe.call(this);
+        if (actions.length === 0) {
+            scheduler.active = false;
+            if (scheduledId != null) {
+                scheduler.scheduledId = null;
+                AnimationFrame_1.AnimationFrame.cancelAnimationFrame(scheduledId);
+            }
         }
-        // If the scheduler queue is empty, cancel the requested animation frame and
-        // set the scheduled flag to undefined so the next AnimationFrameAction will
-        // request its own.
-        if (scheduler.actions.length === 0) {
-            AnimationFrame_1.AnimationFrame.cancelAnimationFrame(id);
-            scheduler.scheduled = undefined;
-        }
-        // Return undefined so the action knows to request a new async id if it's rescheduled.
-        return undefined;
     };
     return AnimationFrameAction;
-}(AsyncAction_1.AsyncAction));
+}(FutureAction_1.FutureAction));
 exports.AnimationFrameAction = AnimationFrameAction;
 //# sourceMappingURL=AnimationFrameAction.js.map

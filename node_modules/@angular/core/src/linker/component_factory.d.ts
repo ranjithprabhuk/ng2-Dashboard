@@ -7,7 +7,7 @@
  */
 import { ChangeDetectorRef } from '../change_detection/change_detection';
 import { Injector } from '../di/injector';
-import { Type } from '../type';
+import { Type } from '../facade/lang';
 import { AppElement } from './element';
 import { ElementRef } from './element_ref';
 import { ViewRef } from './view_ref';
@@ -43,7 +43,7 @@ export declare abstract class ComponentRef<C> {
     /**
      * The component type.
      */
-    componentType: Type<any>;
+    componentType: Type;
     /**
      * Destroys the component instance and all of the data structures associated with it.
      */
@@ -56,13 +56,13 @@ export declare abstract class ComponentRef<C> {
 export declare class ComponentRef_<C> extends ComponentRef<C> {
     private _hostElement;
     private _componentType;
-    constructor(_hostElement: AppElement, _componentType: Type<any>);
+    constructor(_hostElement: AppElement, _componentType: Type);
     location: ElementRef;
     injector: Injector;
     instance: C;
     hostView: ViewRef;
     changeDetectorRef: ChangeDetectorRef;
-    componentType: Type<any>;
+    componentType: Type;
     destroy(): void;
     onDestroy(callback: Function): void;
 }
@@ -73,8 +73,8 @@ export declare class ComponentFactory<C> {
     selector: string;
     private _viewFactory;
     private _componentType;
-    constructor(selector: string, _viewFactory: Function, _componentType: Type<any>);
-    componentType: Type<any>;
+    constructor(selector: string, _viewFactory: Function, _componentType: Type);
+    componentType: Type;
     /**
      * Creates a new component.
      */

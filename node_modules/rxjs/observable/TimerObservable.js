@@ -85,7 +85,7 @@ var TimerObservable = (function (_super) {
         var index = state.index, period = state.period, subscriber = state.subscriber;
         var action = this;
         subscriber.next(index);
-        if (subscriber.closed) {
+        if (subscriber.isUnsubscribed) {
             return;
         }
         else if (period === -1) {

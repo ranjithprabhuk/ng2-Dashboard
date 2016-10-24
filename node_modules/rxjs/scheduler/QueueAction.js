@@ -4,7 +4,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var AsyncAction_1 = require('./AsyncAction');
+var FutureAction_1 = require('./FutureAction');
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @ignore
@@ -12,36 +12,22 @@ var AsyncAction_1 = require('./AsyncAction');
  */
 var QueueAction = (function (_super) {
     __extends(QueueAction, _super);
-    function QueueAction(scheduler, work) {
-        _super.call(this, scheduler, work);
-        this.scheduler = scheduler;
-        this.work = work;
+    function QueueAction() {
+        _super.apply(this, arguments);
     }
-    QueueAction.prototype.schedule = function (state, delay) {
+    QueueAction.prototype._schedule = function (state, delay) {
         if (delay === void 0) { delay = 0; }
         if (delay > 0) {
-            return _super.prototype.schedule.call(this, state, delay);
+            return _super.prototype._schedule.call(this, state, delay);
         }
         this.delay = delay;
         this.state = state;
-        this.scheduler.flush(this);
+        var scheduler = this.scheduler;
+        scheduler.actions.push(this);
+        scheduler.flush();
         return this;
     };
-    QueueAction.prototype.execute = function (state, delay) {
-        return (delay > 0 || this.closed) ?
-            _super.prototype.execute.call(this, state, delay) :
-            this._execute(state, delay);
-    };
-    QueueAction.prototype.requestAsyncId = function (scheduler, id, delay) {
-        if (delay === void 0) { delay = 0; }
-        // If delay is greater than 0, enqueue as an async action.
-        if (delay !== null && delay > 0) {
-            return _super.prototype.requestAsyncId.call(this, scheduler, id, delay);
-        }
-        // Otherwise flush the scheduler starting with this action.
-        return scheduler.flush(this);
-    };
     return QueueAction;
-}(AsyncAction_1.AsyncAction));
+}(FutureAction_1.FutureAction));
 exports.QueueAction = QueueAction;
 //# sourceMappingURL=QueueAction.js.map

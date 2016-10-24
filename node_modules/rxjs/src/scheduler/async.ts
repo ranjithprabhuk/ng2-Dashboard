@@ -1,4 +1,3 @@
-import { AsyncAction } from './AsyncAction';
-import { AsyncScheduler } from './AsyncScheduler';
+import {AsyncScheduler} from './AsyncScheduler';
 
-export const async = new AsyncScheduler(AsyncAction);
+export const async = new AsyncScheduler();

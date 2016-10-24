@@ -86,7 +86,7 @@ var SwitchMapToSubscriber = (function (_super) {
     };
     SwitchMapToSubscriber.prototype._complete = function () {
         var innerSubscription = this.innerSubscription;
-        if (!innerSubscription || innerSubscription.closed) {
+        if (!innerSubscription || innerSubscription.isUnsubscribed) {
             _super.prototype._complete.call(this);
         }
     };

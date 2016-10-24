@@ -16,55 +16,55 @@ var ReplaySubject = (function (_super) {
         if (bufferSize === void 0) { bufferSize = Number.POSITIVE_INFINITY; }
         if (windowTime === void 0) { windowTime = Number.POSITIVE_INFINITY; }
         _super.call(this);
+        this.events = [];
         this.scheduler = scheduler;
-        this._events = [];
-        this._bufferSize = bufferSize < 1 ? 1 : bufferSize;
+        this.bufferSize = bufferSize < 1 ? 1 : bufferSize;
         this._windowTime = windowTime < 1 ? 1 : windowTime;
     }
-    ReplaySubject.prototype.next = function (value) {
+    ReplaySubject.prototype._next = function (value) {
         var now = this._getNow();
-        this._events.push(new ReplayEvent(now, value));
-        this._trimBufferThenGetEvents();
-        _super.prototype.next.call(this, value);
+        this.events.push(new ReplayEvent(now, value));
+        this._trimBufferThenGetEvents(now);
+        _super.prototype._next.call(this, value);
     };
     ReplaySubject.prototype._subscribe = function (subscriber) {
-        var _events = this._trimBufferThenGetEvents();
+        var events = this._trimBufferThenGetEvents(this._getNow());
         var scheduler = this.scheduler;
         if (scheduler) {
             subscriber.add(subscriber = new observeOn_1.ObserveOnSubscriber(subscriber, scheduler));
         }
-        var len = _events.length;
-        for (var i = 0; i < len && !subscriber.closed; i++) {
-            subscriber.next(_events[i].value);
+        var index = -1;
+        var len = events.length;
+        while (++index < len && !subscriber.isUnsubscribed) {
+            subscriber.next(events[index].value);
         }
         return _super.prototype._subscribe.call(this, subscriber);
     };
     ReplaySubject.prototype._getNow = function () {
         return (this.scheduler || queue_1.queue).now();
     };
-    ReplaySubject.prototype._trimBufferThenGetEvents = function () {
-        var now = this._getNow();
-        var _bufferSize = this._bufferSize;
+    ReplaySubject.prototype._trimBufferThenGetEvents = function (now) {
+        var bufferSize = this.bufferSize;
         var _windowTime = this._windowTime;
-        var _events = this._events;
-        var eventsCount = _events.length;
+        var events = this.events;
+        var eventsCount = events.length;
         var spliceCount = 0;
         // Trim events that fall out of the time window.
         // Start at the front of the list. Break early once
         // we encounter an event that falls within the window.
         while (spliceCount < eventsCount) {
-            if ((now - _events[spliceCount].time) < _windowTime) {
+            if ((now - events[spliceCount].time) < _windowTime) {
                 break;
             }
-            spliceCount++;
+            spliceCount += 1;
         }
-        if (eventsCount > _bufferSize) {
-            spliceCount = Math.max(spliceCount, eventsCount - _bufferSize);
+        if (eventsCount > bufferSize) {
+            spliceCount = Math.max(spliceCount, eventsCount - bufferSize);
         }
         if (spliceCount > 0) {
-            _events.splice(0, spliceCount);
+            events.splice(0, spliceCount);
         }
-        return _events;
+        return events;
     };
     return ReplaySubject;
 }(Subject_1.Subject));

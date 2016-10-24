@@ -6,7 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import { Injector } from '../di/injector';
-import { Type } from '../type';
+import { ConcreteType } from '../facade/lang';
 import { ComponentFactory } from './component_factory';
 import { CodegenComponentFactoryResolver, ComponentFactoryResolver } from './component_factory_resolver';
 /**
@@ -15,7 +15,7 @@ import { CodegenComponentFactoryResolver, ComponentFactoryResolver } from './com
  * `NgModuleRef` provides access to the NgModule Instance as well other objects related to this
  * NgModule Instance.
  *
- * @stable
+ * @experimental
  */
 export declare abstract class NgModuleRef<T> {
     /**
@@ -24,7 +24,7 @@ export declare abstract class NgModuleRef<T> {
     injector: Injector;
     /**
      * The ComponentFactoryResolver to get hold of the ComponentFactories
-     * declared in the `entryComponents` property of the module.
+     * delcared in the `entryComponents` property of the module.
      */
     componentFactoryResolver: ComponentFactoryResolver;
     /**
@@ -45,11 +45,11 @@ export declare abstract class NgModuleRef<T> {
  */
 export declare class NgModuleFactory<T> {
     private _injectorClass;
-    private _moduleType;
+    private _moduleype;
     constructor(_injectorClass: {
         new (parentInjector: Injector): NgModuleInjector<T>;
-    }, _moduleType: Type<T>);
-    moduleType: Type<T>;
+    }, _moduleype: ConcreteType<T>);
+    moduleType: ConcreteType<T>;
     create(parentInjector: Injector): NgModuleRef<T>;
 }
 export declare abstract class NgModuleInjector<T> extends CodegenComponentFactoryResolver implements Injector, NgModuleRef<T> {

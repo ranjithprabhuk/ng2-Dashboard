@@ -1,40 +1,50 @@
-import { Subject } from './Subject';
-import { Subscriber } from './Subscriber';
-import { Subscription } from './Subscription';
+import {Subject} from './Subject';
+import {Subscriber} from './Subscriber';
+import {TeardownLogic} from './Subscription';
 
 /**
  * @class AsyncSubject<T>
  */
 export class AsyncSubject<T> extends Subject<T> {
-  private value: T = null;
-  private hasNext: boolean = false;
-  private hasCompleted: boolean = false;
+  value: T = null;
+  hasNext: boolean = false;
 
-  protected _subscribe(subscriber: Subscriber<any>): Subscription {
+  protected _subscribe(subscriber: Subscriber<any>): TeardownLogic {
     if (this.hasCompleted && this.hasNext) {
       subscriber.next(this.value);
-      subscriber.complete();
-      return Subscription.EMPTY;
-    } else if (this.hasError) {
-      subscriber.error(this.thrownError);
-      return Subscription.EMPTY;
     }
 
     return super._subscribe(subscriber);
   }
 
-  next(value: T): void {
-    if (!this.hasCompleted) {
-      this.value = value;
-      this.hasNext = true;
-    }
+  protected _next(value: T): void {
+    this.value = value;
+    this.hasNext = true;
   }
 
-  complete(): void {
-    this.hasCompleted = true;
+  protected _complete(): void {
+    let index = -1;
+    const observers = this.observers;
+    const len = observers.length;
+
+    // optimization to block our SubjectSubscriptions from
+    // splicing themselves out of the observers list one by one.
+    this.isUnsubscribed = true;
+
     if (this.hasNext) {
-      super.next(this.value);
+      while (++index < len) {
+        let o = observers[index];
+        o.next(this.value);
+        o.complete();
+      }
+    } else {
+      while (++index < len) {
+        observers[index].complete();
+      }
     }
-    super.complete();
+
+    this.isUnsubscribed = false;
+
+    this.unsubscribe();
   }
 }

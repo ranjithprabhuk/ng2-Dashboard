@@ -14,37 +14,21 @@ var Observable_1 = require('../Observable');
 var PromiseObservable = (function (_super) {
     __extends(PromiseObservable, _super);
     function PromiseObservable(promise, scheduler) {
+        if (scheduler === void 0) { scheduler = null; }
         _super.call(this);
         this.promise = promise;
         this.scheduler = scheduler;
     }
     /**
-     * Converts a Promise to an Observable.
-     *
-     * <span class="informal">Returns an Observable that just emits the Promise's
-     * resolved value, then completes.</span>
-     *
-     * Converts an ES2015 Promise or a Promises/A+ spec compliant Promise to an
-     * Observable. If the Promise resolves with a value, the output Observable
-     * emits that resolved value as a `next`, and then completes. If the Promise
-     * is rejected, then the output Observable emits the corresponding Error.
-     *
-     * @example <caption>Convert the Promise returned by Fetch to an Observable</caption>
-     * var result = Rx.Observable.fromPromise(fetch('http://myserver.com/'));
-     * result.subscribe(x => console.log(x), e => console.error(e));
-     *
-     * @see {@link bindCallback}
-     * @see {@link from}
-     *
-     * @param {Promise<T>} promise The promise to be converted.
-     * @param {Scheduler} [scheduler] An optional Scheduler to use for scheduling
-     * the delivery of the resolved value (or the rejection).
-     * @return {Observable<T>} An Observable which wraps the Promise.
+     * @param promise
+     * @param scheduler
+     * @return {PromiseObservable}
      * @static true
      * @name fromPromise
      * @owner Observable
      */
     PromiseObservable.create = function (promise, scheduler) {
+        if (scheduler === void 0) { scheduler = null; }
         return new PromiseObservable(promise, scheduler);
     };
     PromiseObservable.prototype._subscribe = function (subscriber) {
@@ -53,7 +37,7 @@ var PromiseObservable = (function (_super) {
         var scheduler = this.scheduler;
         if (scheduler == null) {
             if (this._isScalar) {
-                if (!subscriber.closed) {
+                if (!subscriber.isUnsubscribed) {
                     subscriber.next(this.value);
                     subscriber.complete();
                 }
@@ -62,12 +46,12 @@ var PromiseObservable = (function (_super) {
                 promise.then(function (value) {
                     _this.value = value;
                     _this._isScalar = true;
-                    if (!subscriber.closed) {
+                    if (!subscriber.isUnsubscribed) {
                         subscriber.next(value);
                         subscriber.complete();
                     }
                 }, function (err) {
-                    if (!subscriber.closed) {
+                    if (!subscriber.isUnsubscribed) {
                         subscriber.error(err);
                     }
                 })
@@ -79,7 +63,7 @@ var PromiseObservable = (function (_super) {
         }
         else {
             if (this._isScalar) {
-                if (!subscriber.closed) {
+                if (!subscriber.isUnsubscribed) {
                     return scheduler.schedule(dispatchNext, 0, { value: this.value, subscriber: subscriber });
                 }
             }
@@ -87,11 +71,11 @@ var PromiseObservable = (function (_super) {
                 promise.then(function (value) {
                     _this.value = value;
                     _this._isScalar = true;
-                    if (!subscriber.closed) {
+                    if (!subscriber.isUnsubscribed) {
                         subscriber.add(scheduler.schedule(dispatchNext, 0, { value: value, subscriber: subscriber }));
                     }
                 }, function (err) {
-                    if (!subscriber.closed) {
+                    if (!subscriber.isUnsubscribed) {
                         subscriber.add(scheduler.schedule(dispatchError, 0, { err: err, subscriber: subscriber }));
                     }
                 })
@@ -107,14 +91,14 @@ var PromiseObservable = (function (_super) {
 exports.PromiseObservable = PromiseObservable;
 function dispatchNext(arg) {
     var value = arg.value, subscriber = arg.subscriber;
-    if (!subscriber.closed) {
+    if (!subscriber.isUnsubscribed) {
         subscriber.next(value);
         subscriber.complete();
     }
 }
 function dispatchError(arg) {
     var err = arg.err, subscriber = arg.subscriber;
-    if (!subscriber.closed) {
+    if (!subscriber.isUnsubscribed) {
         subscriber.error(err);
     }
 }

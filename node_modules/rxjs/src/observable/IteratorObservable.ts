@@ -1,9 +1,13 @@
-import { root } from '../util/root';
-import { Scheduler } from '../Scheduler';
-import { Observable } from '../Observable';
-import { $$iterator } from '../symbol/iterator';
-import { TeardownLogic } from '../Subscription';
-import { Subscriber } from '../Subscriber';
+import {root} from '../util/root';
+import {isObject} from '../util/isObject';
+import {tryCatch} from '../util/tryCatch';
+import {Scheduler} from '../Scheduler';
+import {Observable} from '../Observable';
+import {isFunction} from '../util/isFunction';
+import {$$iterator} from '../symbol/iterator';
+import {errorObject} from '../util/errorObject';
+import {TeardownLogic} from '../Subscription';
+import {Subscriber} from '../Subscriber';
 
 /**
  * We need this JSDoc comment for affecting ESDoc.
@@ -13,13 +17,16 @@ import { Subscriber } from '../Subscriber';
 export class IteratorObservable<T> extends Observable<T> {
   private iterator: any;
 
-  static create<T>(iterator: any, scheduler?: Scheduler) {
-    return new IteratorObservable(iterator, scheduler);
+  static create<T>(iterator: any,
+                   project?: ((x?: any, i?: number) => T) | any,
+                   thisArg?: any | Scheduler,
+                   scheduler?: Scheduler) {
+    return new IteratorObservable(iterator, project, thisArg, scheduler);
   }
 
   static dispatch(state: any) {
 
-    const { index, hasError, iterator, subscriber } = state;
+    const { index, hasError, thisArg, project, iterator, subscriber } = state;
 
     if (hasError) {
       subscriber.error(state.error);
@@ -27,26 +34,56 @@ export class IteratorObservable<T> extends Observable<T> {
     }
 
     let result = iterator.next();
+
     if (result.done) {
       subscriber.complete();
       return;
     }
 
-    subscriber.next(result.value);
-    state.index = index + 1;
+    if (project) {
+      result = tryCatch(project).call(thisArg, result.value, index);
+      if (result === errorObject) {
+        state.error = errorObject.e;
+        state.hasError = true;
+      } else {
+        subscriber.next(result);
+        state.index = index + 1;
+      }
+    } else {
+      subscriber.next(result.value);
+      state.index = index + 1;
+    }
 
-    if (subscriber.closed) {
+    if (subscriber.isUnsubscribed) {
       return;
     }
 
     (<any> this).schedule(state);
   }
 
-  constructor(iterator: any, private scheduler?: Scheduler) {
+  private thisArg: any;
+  private project: (x?: any, i?: number) => T;
+  private scheduler: Scheduler;
+
+  constructor(iterator: any,
+              project?: ((x?: any, i?: number) => T) | any,
+              thisArg?: any | Scheduler,
+              scheduler?: Scheduler) {
     super();
 
     if (iterator == null) {
       throw new Error('iterator cannot be null.');
+    }
+
+    if (isObject(project)) {
+      this.thisArg = project;
+      this.scheduler = thisArg;
+    } else if (isFunction(project)) {
+      this.project = project;
+      this.thisArg = thisArg;
+      this.scheduler = scheduler;
+    } else if (project != null) {
+      throw new Error('When provided, `project` must be a function.');
     }
 
     this.iterator = getIterator(iterator);
@@ -55,11 +92,11 @@ export class IteratorObservable<T> extends Observable<T> {
   protected _subscribe(subscriber: Subscriber<T>): TeardownLogic {
 
     let index = 0;
-    const { iterator, scheduler } = this;
+    const { iterator, project, thisArg, scheduler } = this;
 
     if (scheduler) {
       return scheduler.schedule(IteratorObservable.dispatch, 0, {
-        index, iterator, subscriber
+        index, thisArg, project, iterator, subscriber
       });
     } else {
       do {
@@ -67,10 +104,17 @@ export class IteratorObservable<T> extends Observable<T> {
         if (result.done) {
           subscriber.complete();
           break;
+        } else if (project) {
+          result = tryCatch(project).call(thisArg, result.value, index++);
+          if (result === errorObject) {
+            subscriber.error(errorObject.e);
+            break;
+          }
+          subscriber.next(result);
         } else {
           subscriber.next(result.value);
         }
-        if (subscriber.closed) {
+        if (subscriber.isUnsubscribed) {
           break;
         }
       } while (true);
@@ -121,7 +165,7 @@ function getIterator(obj: any) {
     return new ArrayIterator(obj);
   }
   if (!i) {
-    throw new TypeError('object is not iterable');
+    throw new TypeError('Object is not iterable');
   }
   return obj[$$iterator]();
 }

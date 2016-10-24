@@ -1,9 +1,9 @@
-import { isArray } from './util/isArray';
-import { isObject } from './util/isObject';
-import { isFunction } from './util/isFunction';
-import { tryCatch } from './util/tryCatch';
-import { errorObject } from './util/errorObject';
-import { UnsubscriptionError } from './util/UnsubscriptionError';
+import {isArray} from './util/isArray';
+import {isObject} from './util/isObject';
+import {isFunction} from './util/isFunction';
+import {tryCatch} from './util/tryCatch';
+import {errorObject} from './util/errorObject';
+import {UnsubscriptionError} from './util/UnsubscriptionError';
 
 export interface AnonymousSubscription {
   unsubscribe(): void;
@@ -13,7 +13,9 @@ export type TeardownLogic = AnonymousSubscription | Function | void;
 
 export interface ISubscription extends AnonymousSubscription {
   unsubscribe(): void;
-  closed: boolean;
+  isUnsubscribed: boolean;
+  add(teardown: TeardownLogic): ISubscription;
+  remove(sub: ISubscription): void;
 }
 
 /**
@@ -30,7 +32,7 @@ export interface ISubscription extends AnonymousSubscription {
  */
 export class Subscription implements ISubscription {
   public static EMPTY: Subscription = (function(empty: any){
-    empty.closed = true;
+    empty.isUnsubscribed = true;
     return empty;
   }(new Subscription()));
 
@@ -38,7 +40,7 @@ export class Subscription implements ISubscription {
    * A flag to indicate whether this Subscription has already been unsubscribed.
    * @type {boolean}
    */
-  public closed: boolean = false;
+  public isUnsubscribed: boolean = false;
 
   /**
    * @param {function(): void} [unsubscribe] A function describing how to
@@ -60,11 +62,11 @@ export class Subscription implements ISubscription {
     let hasErrors = false;
     let errors: any[];
 
-    if (this.closed) {
+    if (this.isUnsubscribed) {
       return;
     }
 
-    this.closed = true;
+    this.isUnsubscribed = true;
 
     const { _unsubscribe, _subscriptions } = (<any> this);
 
@@ -114,7 +116,7 @@ export class Subscription implements ISubscription {
    * unsubscribed, is the same reference `add` is being called on, or is
    * `Subscription.EMPTY`, it will not be added.
    *
-   * If this subscription is already in an `closed` state, the passed
+   * If this subscription is already in an `isUnsubscribed` state, the passed
    * tear down logic will be executed immediately.
    *
    * @param {TeardownLogic} teardown The additional logic to execute on
@@ -125,12 +127,10 @@ export class Subscription implements ISubscription {
    * list.
    */
   add(teardown: TeardownLogic): Subscription {
-    if (!teardown || (teardown === Subscription.EMPTY)) {
-      return Subscription.EMPTY;
-    }
-
-    if (teardown === this) {
-      return this;
+    if (!teardown || (
+        teardown === this) || (
+        teardown === Subscription.EMPTY)) {
+      return;
     }
 
     let sub = (<Subscription> teardown);
@@ -139,16 +139,16 @@ export class Subscription implements ISubscription {
       case 'function':
         sub = new Subscription(<(() => void) > teardown);
       case 'object':
-        if (sub.closed || typeof sub.unsubscribe !== 'function') {
+        if (sub.isUnsubscribed || typeof sub.unsubscribe !== 'function') {
           break;
-        } else if (this.closed) {
+        } else if (this.isUnsubscribed) {
           sub.unsubscribe();
         } else {
           ((<any> this)._subscriptions || ((<any> this)._subscriptions = [])).push(sub);
         }
         break;
       default:
-        throw new Error('unrecognized teardown ' + teardown + ' added to Subscription.');
+        throw new Error('Unrecognized teardown ' + teardown + ' added to Subscription.');
     }
 
     return sub;
