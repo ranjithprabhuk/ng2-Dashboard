@@ -1,0 +1,1 @@
+{"version":3,"file":"mailbox-component.js","sourceRoot":"","sources":["mailbox-component.ts"],"names":[],"mappings":";;;;;;;;;;AAAA,qBAA0B,eAAe,CAAC,CAAA;AAC1C,uBAAkC,iBAAiB,CAAC,CAAA;AAQpD;IAAA;IAEA,CAAC;IARD;QAAC,gBAAS,CAAC;YACP,QAAQ,EAAE,SAAS;YACnB,WAAW,EAAE,0CAA0C;YACvD,UAAU,EAAE,CAAC,0BAAiB,CAAC;SAClC,CAAC;;wBAAA;IAIF,uBAAC;AAAD,CAAC,AAFD,IAEC;AAFY,wBAAgB,mBAE5B,CAAA"}

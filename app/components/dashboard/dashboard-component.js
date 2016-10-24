@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 //import 
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var dashboard_options_1 = require('./model/dashboard-options');
 var header_component_1 = require('./header-component');
 var sidebar_component_1 = require('./sidebar-component');
@@ -184,6 +185,7 @@ var DashBoardComponent = (function () {
                 else if ((checkElement.is('.treeview-menu')) && (!checkElement.is(':visible'))) {
                     //Get the parent menu
                     var parent = $this.parents('ul').first();
+                    console.log(parent);
                     //Close all open menus within the parent
                     var ul = parent.find('ul:visible').slideUp(animationSpeed);
                     //Remove the menu-open class from the parent
@@ -199,6 +201,24 @@ var DashBoardComponent = (function () {
                         //Fix the layout in case the sidebar stretches over the height of the window
                         _this.layout.fix(_this.options);
                     });
+                }
+                //if it does not have treeview or children
+                if (checkElement.length == 0) {
+                    //Get the Parent Side bar menu
+                    var parent = $this.parents('ul').first();
+                    //Close all open menus within the parent
+                    var ul = parent.find('ul:visible');
+                    //check for any open menu
+                    if (ul.length) {
+                        //slide up the menu
+                        ul.slideUp(animationSpeed);
+                        //Remove the menu-open class from the parent
+                        ul.removeClass('menu-open');
+                        //find and remove the active class in the li
+                        parent.find('li.active').removeClass('active');
+                        //add the class active to the clicked menu
+                        $(this).parent().addClass('active');
+                    }
                 }
                 //if this isn't a link, prevent the page from being redirected
                 if (checkElement.is('.treeview-menu')) {
@@ -216,7 +236,6 @@ var DashBoardComponent = (function () {
         this.controlSidebar = {
             //instantiate the object
             activate: function (options) {
-                console.log("this>>", this);
                 //Get the object
                 var _this = this;
                 //Get the Options
@@ -375,9 +394,6 @@ var DashBoardComponent = (function () {
         $("body").removeClass("hold-transition");
         //Easy access to options
         var o = this.options;
-        console.log("ooo>>", JSON.stringify(o), this);
-        //Set up the object
-        // _init();
         //Activate the layout maker
         this.layout.activate(o);
         //Enable sidebar tree view controls
@@ -421,7 +437,7 @@ var DashBoardComponent = (function () {
         core_1.Component({
             selector: 'dashboard',
             templateUrl: 'app/components/dashboard/view/dashboard.html',
-            directives: [header_component_1.HeaderComponent, sidebar_component_1.SidebarComponent, right_sidebar_component_1.RightSidebarComponent, footer_component_1.FooterComponent]
+            directives: [header_component_1.HeaderComponent, sidebar_component_1.SidebarComponent, right_sidebar_component_1.RightSidebarComponent, footer_component_1.FooterComponent, router_1.ROUTER_DIRECTIVES]
         }), 
         __metadata('design:paramtypes', [])
     ], DashBoardComponent);

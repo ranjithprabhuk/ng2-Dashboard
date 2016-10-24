@@ -13,23 +13,21 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
-var router_1 = require('@angular/router');
 var common_1 = require('@angular/common');
+//import the application routing module
+var app_routing_1 = require('./routing/app.routing');
 //custom module dependencies
 var dashboard_component_1 = require('./components/dashboard/dashboard-component');
-var home_component_1 = require('./components/home/home-component');
-var widget_component_1 = require('./components/widgets/widget-component');
-//router configuration
-var app_routing_1 = require('./routing/app.routing');
+//Module Imports and Declarations
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, router_1.RouterModule.forRoot(app_routing_1.DashboardRoutes)],
-            declarations: [dashboard_component_1.DashBoardComponent, home_component_1.HomeComponent, widget_component_1.WidgetComponent],
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, app_routing_1.DashboardRoutingModule],
+            declarations: [dashboard_component_1.DashBoardComponent],
             bootstrap: [dashboard_component_1.DashBoardComponent],
-            providers: [{ provide: common_1.APP_BASE_HREF, useValue: '/' }]
+            providers: [{ provide: common_1.APP_BASE_HREF, useValue: '/' }] //define the base hyperlink reference of the application
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

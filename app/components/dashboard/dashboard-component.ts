@@ -1,5 +1,6 @@
 //import 
 import {Component} from '@angular/core';
+import {ROUTER_DIRECTIVES} from '@angular/router';
 import {DashboardOptions} from './model/dashboard-options';
 import {HeaderComponent} from './header-component';
 import {SidebarComponent} from './sidebar-component';
@@ -12,7 +13,7 @@ import 'bootstrap';
 @Component({
     selector:'dashboard',
     templateUrl:'app/components/dashboard/view/dashboard.html',
-    directives :[HeaderComponent,SidebarComponent,RightSidebarComponent,FooterComponent]
+    directives :[HeaderComponent,SidebarComponent,RightSidebarComponent,FooterComponent,ROUTER_DIRECTIVES]
 })
 
 
@@ -196,6 +197,7 @@ export class DashBoardComponent {
                 else if ((checkElement.is('.treeview-menu')) && (!checkElement.is(':visible'))) {
                 //Get the parent menu
                 var parent = $this.parents('ul').first();
+                console.log(parent);
                 //Close all open menus within the parent
                 var ul = parent.find('ul:visible').slideUp(animationSpeed);
                 //Remove the menu-open class from the parent
@@ -212,6 +214,24 @@ export class DashBoardComponent {
                     //Fix the layout in case the sidebar stretches over the height of the window
                     _this.layout.fix(_this.options);
                 });
+                }
+                //if it does not have treeview or children
+                if(checkElement.length ==0){
+                    //Get the Parent Side bar menu
+                    var parent = $this.parents('ul').first();
+                    //Close all open menus within the parent
+                    var ul = parent.find('ul:visible')
+                    //check for any open menu
+                    if(ul.length){
+                        //slide up the menu
+                        ul.slideUp(animationSpeed);
+                        //Remove the menu-open class from the parent
+                        ul.removeClass('menu-open');
+                        //find and remove the active class in the li
+                        parent.find('li.active').removeClass('active');
+                        //add the class active to the clicked menu
+                        $(this).parent().addClass('active');
+                    }
                 }
                 //if this isn't a link, prevent the page from being redirected
                 if (checkElement.is('.treeview-menu')) {
@@ -230,7 +250,6 @@ export class DashBoardComponent {
        public controlSidebar:any = {
             //instantiate the object
             activate: function (options) {
-                console.log("this>>",this);
             //Get the object
             var _this = this;
             //Get the Options
@@ -391,10 +410,6 @@ export class DashBoardComponent {
 
         //Easy access to options
         var o = this.options;
-        console.log("ooo>>",JSON.stringify(o),this);
-
-        //Set up the object
-       // _init();
 
         //Activate the layout maker
         this.layout.activate(o);
