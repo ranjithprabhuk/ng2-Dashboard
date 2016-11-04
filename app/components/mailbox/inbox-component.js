@@ -15,7 +15,7 @@ var InboxComponent = (function () {
     InboxComponent = __decorate([
         core_1.Component({
             selector: 'inbox',
-            templateUrl: 'app/components/mailbox/inbox/inbox-component'
+            templateUrl: 'app/components/mailbox/view/inbox.html'
         }), 
         __metadata('design:paramtypes', [])
     ], InboxComponent);

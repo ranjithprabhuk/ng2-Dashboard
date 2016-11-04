@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { ROUTER_DIRECTIVES, CanActivateChild } from '@angular/router';
 
 @Component({
     selector: 'mailbox',
@@ -8,5 +8,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 })
 
 export class MailBoxComponent {
+
+
     
 }

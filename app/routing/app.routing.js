@@ -18,30 +18,33 @@ var form_editors_component_1 = require('../components/forms/form-editors-compone
 var form_advanced_component_1 = require('../components/forms/form-advanced-component');
 var form_general_component_1 = require('../components/forms/form-general-component');
 var compose_mail_component_1 = require('../components/mailbox/compose-mail-component');
-var read_mail_component_1 = require('../components/mailbox/read-mail-component');
 var mailbox_component_1 = require('../components/mailbox/mailbox-component');
 var inbox_component_1 = require('../components/mailbox/inbox-component');
-//define the application routing configuration
+//define the application routing configuration such as path and component
 var DashboardRoutes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: home_component_1.HomeComponent },
     { path: 'widgets', component: widget_component_1.WidgetComponent },
     { path: 'calendar', component: calendar_component_1.CalendarComponent },
+    {
+        path: 'mailbox',
+        component: mailbox_component_1.MailBoxComponent,
+        children: [
+            { path: '', redirectTo: '/mailbox/inbox', pathMatch: 'full' },
+            {
+                path: 'inbox',
+                component: inbox_component_1.InboxComponent
+            },
+            {
+                path: 'compose',
+                component: compose_mail_component_1.ComposeMailComponent
+            }
+        ]
+    },
     { path: 'form-editors', component: form_editors_component_1.FormEditorsComponent },
     { path: 'form-advanced', component: form_advanced_component_1.FormAdvancedComponent },
     { path: 'form-general', component: form_general_component_1.FormGeneralComponent },
-    { path: 'compose-mail', component: compose_mail_component_1.ComposeMailComponent },
-    { path: 'read-mail', component: read_mail_component_1.ReadMailComponent },
-    { path: 'mailbox', component: mailbox_component_1.MailBoxComponent,
-    }
-];
-var MailBoxRoutes = [
-    { path: 'mailbox', component: mailbox_component_1.MailBoxComponent,
-        children: [
-            { path: 'compose', component: compose_mail_component_1.ComposeMailComponent },
-            { path: 'inbox', component: inbox_component_1.InboxComponent }
-        ]
-    }
+    { path: '**', component: home_component_1.HomeComponent } //if path not found, default HomeComponent will be loaded
 ];
 //Module Imports and Declarations
 var DashboardRoutingModule = (function () {
@@ -50,6 +53,8 @@ var DashboardRoutingModule = (function () {
     DashboardRoutingModule = __decorate([
         core_1.NgModule({
             imports: [router_1.RouterModule.forRoot(DashboardRoutes)],
+            declarations: [home_component_1.HomeComponent, widget_component_1.WidgetComponent, calendar_component_1.CalendarComponent, form_editors_component_1.FormEditorsComponent, form_advanced_component_1.FormAdvancedComponent,
+                form_general_component_1.FormGeneralComponent],
             exports: [router_1.RouterModule]
         }), 
         __metadata('design:paramtypes', [])
