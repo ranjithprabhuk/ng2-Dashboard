@@ -46,8 +46,7 @@
       ngPackageNames.forEach(setPackageConfig);
       var config = {
         map: map,
-        packages: packages,
-        baseURL: '/ng2-Dashboard/'
+        packages: packages
       };
       System.config(config);
     })(this);
