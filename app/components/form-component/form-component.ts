@@ -23,7 +23,7 @@ export class FormComponent {
     * get the employee details
     */
    public getEmployee() {
-         this.employeeServices.getEmployee().subscribe(data =>{console.log("data>>",data);this.employeeDetails =data;},err=>err);
+         //this.employeeServices.getEmployee().subscribe(data =>{console.log("data>>",data);this.employeeDetails =data;},err=>err);
        //console.log("after request>>",this.employeeDataa.subscribe);
    }
 

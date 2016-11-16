@@ -10,7 +10,9 @@
         'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
         'rxjs':                       'node_modules/rxjs',
         'jquery':                     'node_modules/jquery/dist',
-        'bootstrap':                  'node_modules/bootstrap/dist/js'
+        'bootstrap':                  'node_modules/bootstrap/dist/js',
+        'ng2-charts':                 'node_modules/ng2-charts',
+        'chartjs':                    'node_modules/chart.js/dist'
       };
       // packages tells the System loader how to load when no filename and/or no extension
       var packages = {
@@ -18,7 +20,9 @@
         'rxjs':                       { defaultExtension: 'js' },
         'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
         'jquery':                     { main: 'jquery.min.js', defaultExtension: 'js' },
-        'bootstrap':                  { main: 'bootstrap.min.js', defaultExtension: 'js' }
+        'bootstrap':                  { main: 'bootstrap.min.js', defaultExtension: 'js' },
+        'ng2-charts':                 { main: 'ng2-charts.js', defaultExtension: 'js' },
+        'chartjs':                    { main: 'Chart.min.js', defaultExtension: 'js' },
       };
       var ngPackageNames = [
         'common',

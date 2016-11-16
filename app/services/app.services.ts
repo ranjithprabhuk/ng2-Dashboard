@@ -10,17 +10,17 @@ import {Observable} from 'rxjs/Rx';
 @Injectable()
 export class EmployeeService{
 
-    private apiUrl = "app/json/employeeData.json";
+    private apiBase = "app/json/";
 
     constructor(private http:Http){}
 
-    getEmployee(): Observable<FormData[]>{
+    getEmployee(path:string): Observable<FormData[]>{
 
         //let headers = new Headers({ 'Content-Type': 'application/json' });
        // let options = new RequestOptions({ headers: headers });
 
         //call the http method
-       return this.http.get(this.apiUrl).map((res:Response) => res.json())
+       return this.http.get(this.apiBase+path).map((res:Response) => res.json())
         .catch((err:any) => Observable.throw(err));
     }
 

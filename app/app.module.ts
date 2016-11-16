@@ -10,6 +10,8 @@ import { APP_BASE_HREF } from '@angular/common';
 //import the application routing module
 import { DashboardRoutingModule } from './routing/app.routing';
 
+import { AuthenticationModule } from './modules/authentication/authentication-module';
+
 //custom module dependencies
 import {DashBoardComponent} from './components/dashboard/dashboard-component';
 
@@ -18,7 +20,7 @@ import {DashBoardComponent} from './components/dashboard/dashboard-component';
   imports:      [ BrowserModule, FormsModule, HttpModule, DashboardRoutingModule ],  //include angular dependencies to imports
   declarations: [ DashBoardComponent],  //include custom module to declarations
   bootstrap:    [ DashBoardComponent ],   //include the module which will start the application
-  providers:    [{provide: APP_BASE_HREF, useValue : '/' }]  //define the base hyperlink reference of the application
+  providers:    []  //define the base hyperlink reference of the application
 })
 
 export class AppModule { }

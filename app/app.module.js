@@ -13,7 +13,6 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
-var common_1 = require('@angular/common');
 //import the application routing module
 var app_routing_1 = require('./routing/app.routing');
 //custom module dependencies
@@ -27,7 +26,7 @@ var AppModule = (function () {
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, app_routing_1.DashboardRoutingModule],
             declarations: [dashboard_component_1.DashBoardComponent],
             bootstrap: [dashboard_component_1.DashBoardComponent],
-            providers: [{ provide: common_1.APP_BASE_HREF, useValue: '/' }] //define the base hyperlink reference of the application
+            providers: [] //define the base hyperlink reference of the application
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

@@ -14,8 +14,10 @@ import { FormGeneralComponent } from '../components/forms/form-general-component
 import { ComposeMailComponent } from '../components/mailbox/compose-mail-component';
 import { ReadMailComponent } from '../components/mailbox/read-mail-component';
 import { MailBoxComponent } from '../components/mailbox/mailbox-component';
+import { Ng2ChartComponent } from '../components/chart/ng2-chart-component';
 
 import { InboxComponent } from '../components/mailbox/inbox-component';
+import { LoginComponent } from '../modules/authentication/components/login/login-component';
 
 //define the application routing configuration such as path and component
 const DashboardRoutes:RouterConfig = [
@@ -38,6 +40,7 @@ const DashboardRoutes:RouterConfig = [
               }
         ]
       },
+    {path:'ng2-charts',component:Ng2ChartComponent},
     {path:'form-editors',component: FormEditorsComponent},
     {path:'form-advanced',component: FormAdvancedComponent},
     {path:'form-general',component: FormGeneralComponent},    

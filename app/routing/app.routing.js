@@ -19,6 +19,7 @@ var form_advanced_component_1 = require('../components/forms/form-advanced-compo
 var form_general_component_1 = require('../components/forms/form-general-component');
 var compose_mail_component_1 = require('../components/mailbox/compose-mail-component');
 var mailbox_component_1 = require('../components/mailbox/mailbox-component');
+var ng2_chart_component_1 = require('../components/chart/ng2-chart-component');
 var inbox_component_1 = require('../components/mailbox/inbox-component');
 //define the application routing configuration such as path and component
 var DashboardRoutes = [
@@ -41,6 +42,7 @@ var DashboardRoutes = [
             }
         ]
     },
+    { path: 'ng2-charts', component: ng2_chart_component_1.Ng2ChartComponent },
     { path: 'form-editors', component: form_editors_component_1.FormEditorsComponent },
     { path: 'form-advanced', component: form_advanced_component_1.FormAdvancedComponent },
     { path: 'form-general', component: form_general_component_1.FormGeneralComponent },

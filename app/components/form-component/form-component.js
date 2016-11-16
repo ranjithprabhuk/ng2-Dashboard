@@ -24,8 +24,7 @@ var FormComponent = (function () {
      * get the employee details
      */
     FormComponent.prototype.getEmployee = function () {
-        var _this = this;
-        this.employeeServices.getEmployee().subscribe(function (data) { console.log("data>>", data); _this.employeeDetails = data; }, function (err) { return err; });
+        //this.employeeServices.getEmployee().subscribe(data =>{console.log("data>>",data);this.employeeDetails =data;},err=>err);
         //console.log("after request>>",this.employeeDataa.subscribe);
     };
     /**

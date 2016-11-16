@@ -14,13 +14,13 @@ var Rx_1 = require('rxjs/Rx');
 var EmployeeService = (function () {
     function EmployeeService(http) {
         this.http = http;
-        this.apiUrl = "app/json/employeeData.json";
+        this.apiBase = "app/json/";
     }
-    EmployeeService.prototype.getEmployee = function () {
+    EmployeeService.prototype.getEmployee = function (path) {
         //let headers = new Headers({ 'Content-Type': 'application/json' });
         // let options = new RequestOptions({ headers: headers });
         //call the http method
-        return this.http.get(this.apiUrl).map(function (res) { return res.json(); })
+        return this.http.get(this.apiBase + path).map(function (res) { return res.json(); })
             .catch(function (err) { return Rx_1.Observable.throw(err); });
     };
     EmployeeService = __decorate([
