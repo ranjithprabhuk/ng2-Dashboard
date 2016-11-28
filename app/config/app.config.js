@@ -7,6 +7,7 @@ var AppConfig = (function () {
         this.apiBase = "app/json/";
         this.theme = "skin-purple";
         this.layout = "sidebar-mini";
+        this.googleMapApiKey = "AIzaSyDrfKaDT7ghhd0KGfrhpBKYNvaY17YvUt0";
     }
     return AppConfig;
 }());

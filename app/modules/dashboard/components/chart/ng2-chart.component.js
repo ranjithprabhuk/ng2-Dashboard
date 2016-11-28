@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 require('chartjs');
-var chart_services_1 = require('./chart.services');
+var chart_service_1 = require('./chart.service');
 var Ng2ChartComponent = (function () {
     function Ng2ChartComponent(chartService) {
         this.chartService = chartService;
@@ -161,9 +161,9 @@ var Ng2ChartComponent = (function () {
         core_1.Component({
             selector: 'ng2-chart',
             templateUrl: 'app/modules/dashboard/components/chart/view/ng2-chart.html',
-            providers: [chart_services_1.ChartService]
+            providers: [chart_service_1.ChartService]
         }), 
-        __metadata('design:paramtypes', [chart_services_1.ChartService])
+        __metadata('design:paramtypes', [chart_service_1.ChartService])
     ], Ng2ChartComponent);
     return Ng2ChartComponent;
 }());

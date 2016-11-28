@@ -10,6 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var auth_guard_service_1 = require('./auth-guard.service');
+var authentication_service_1 = require('./authentication.service');
 var login_component_1 = require('./components/login.component');
 var AuthenticationRoutes = [
     { path: 'login', component: login_component_1.LoginComponent },
@@ -24,7 +26,8 @@ var AuthenticationRoutingModule = (function () {
             ],
             exports: [
                 router_1.RouterModule
-            ]
+            ],
+            providers: [auth_guard_service_1.AuthGuard, authentication_service_1.AuthenticationService]
         }), 
         __metadata('design:paramtypes', [])
     ], AuthenticationRoutingModule);

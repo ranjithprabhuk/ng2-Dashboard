@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import 'chartjs';
-import { ChartService } from './chart.services';
+import { ChartService } from './chart.service';
 
 @Component({
   selector: 'ng2-chart',

@@ -6,5 +6,6 @@ export class AppConfig {
     public apiBase:string      = "app/json/";
     public theme: string        = "skin-purple";
     public layout: string       = "sidebar-mini";
+    public googleMapApiKey : string = "AIzaSyDrfKaDT7ghhd0KGfrhpBKYNvaY17YvUt0";
 
 }

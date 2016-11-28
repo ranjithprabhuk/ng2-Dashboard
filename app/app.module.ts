@@ -5,32 +5,22 @@ import { FormsModule }    from '@angular/forms';
 import { AppComponent }         from './app.component';
 import { AppRoutingModule }     from './routing/app-routing.module';
 
-import { HeroesModule }         from './heroes/heroes.module';
-
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 
 import { LoginRoutingModule }   from './login-routing.module';
 import { LoginComponent }       from './login.component';
 
-import { DialogService }        from './dialog.service';
-
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    HeroesModule,
     AuthenticationModule,
     DashboardModule,
-    LoginRoutingModule,
     AppRoutingModule
   ],
   declarations: [
-    AppComponent,
-    LoginComponent
-  ],
-  providers: [
-    DialogService
+    AppComponent
   ],
   bootstrap: [ AppComponent ]
 })

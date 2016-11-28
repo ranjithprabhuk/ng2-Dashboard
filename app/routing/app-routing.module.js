@@ -23,7 +23,6 @@ var appRoutes = [
         path: '',
         redirectTo: '/login',
         pathMatch: 'full',
-        canLoad: [auth_guard_service_1.AuthGuard]
     }
 ];
 var AppRoutingModule = (function () {

@@ -15,7 +15,7 @@ const appRoutes: Routes = [
     path: '',
     redirectTo: '/login',
     pathMatch: 'full',
-    canLoad: [AuthGuard]
+    //canLoad: [AuthGuard]
   }
 ];
 

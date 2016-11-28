@@ -4,9 +4,11 @@ import { FormsModule }    from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { ApiService } from '../../services/api.service';
+import { AppConfig } from '../../config/app.config';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-
+import { SimpleNotificationsModule } from 'angular2-notifications';
+import { AgmCoreModule } from 'angular2-google-maps';
 
 import { HeaderComponent } from './components/dashboard/header.component';
 import { SidebarComponent } from './components/dashboard/sidebar.component';
@@ -23,6 +25,10 @@ import { ReadMailComponent } from './components/mailbox/read-mail.component';
 import { MailBoxComponent } from './components/mailbox/mailbox.component';
 import { InboxComponent } from './components/mailbox/inbox.component';
 import { Ng2ChartComponent } from './components/chart/ng2-chart.component';
+import { SimpleNotificationComponent } from './components/notifications/notification.component';
+import { ToastyComponent } from './components/notifications/ng2-toasty.component';
+import { GoogleMapComponent } from './components/maps/google-map.component';
+
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
@@ -32,12 +38,16 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     FormsModule,
     HttpModule,
     ChartsModule,
+    AgmCoreModule.forRoot({
+      apiKey: new AppConfig().googleMapApiKey
+    }),
+    SimpleNotificationsModule,
     DashboardRoutingModule
   ],
   declarations: [
     HeaderComponent, SidebarComponent, RightSidebarComponent, FooterComponent, DashBoardComponent, HomeComponent,
     WidgetComponent, FormEditorsComponent, FormAdvancedComponent, FormGeneralComponent,MailBoxComponent, ComposeMailComponent,
-    ReadMailComponent, InboxComponent, Ng2ChartComponent
+    ReadMailComponent, InboxComponent, Ng2ChartComponent, SimpleNotificationComponent, GoogleMapComponent
   ],
   providers:[ApiService]
 })

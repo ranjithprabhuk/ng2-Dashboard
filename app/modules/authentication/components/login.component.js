@@ -9,15 +9,52 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var angular2_notifications_1 = require('angular2-notifications');
+var authentication_service_1 = require('../authentication.service');
 var LoginComponent = (function () {
-    function LoginComponent() {
+    function LoginComponent(authService, router, _notificationsService) {
+        this.authService = authService;
+        this.router = router;
+        this._notificationsService = _notificationsService;
+        this.userDetails = {};
+        this.isRemember = true;
+        this.options = {
+            position: ["bottom", "left"],
+            timeOut: 5000,
+            lastOnBottom: true
+        };
     }
+    //method to handle the sigin in
+    LoginComponent.prototype.signIn = function (data) {
+        var _this = this;
+        if (data && data.username && data.password) {
+            //call the authService to chekc the credentials
+            this.authService.login(data).then(function (res) {
+                //set isLogin as true
+                //this.authService.isLoggedIn = true;
+                console.log("response>>", res);
+                //console.log("status>>",this.authService.isLoggedIn);
+                _this.router.navigate(['/dashboard']);
+            }).catch(function (err) { return err; });
+        }
+    };
+    LoginComponent.prototype.ShowAlert = function () {
+        this._notificationsService.success('Some Title', 'Some Content', {
+            timeOut: 5000,
+            showProgressBar: true,
+            pauseOnHover: false,
+            clickToClose: false,
+            maxLength: 10
+        });
+    };
     LoginComponent = __decorate([
         core_1.Component({
             selector: 'login',
-            templateUrl: 'app/modules/authentication/components/view/login.html'
+            templateUrl: 'app/modules/authentication/components/view/login.html',
+            providers: [authentication_service_1.AuthenticationService, angular2_notifications_1.NotificationsService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [authentication_service_1.AuthenticationService, router_1.Router, angular2_notifications_1.NotificationsService])
     ], LoginComponent);
     return LoginComponent;
 }());
