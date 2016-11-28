@@ -1,0 +1,5 @@
+
+    {
+         "radarChartData": [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56, 55],
+         "radarChartLabels": ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"]
+    }

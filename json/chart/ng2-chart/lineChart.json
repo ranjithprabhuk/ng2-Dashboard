@@ -1,0 +1,10 @@
+
+    {
+         "lineChartData": [
+            {"data": [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56, 55], "label": "Country A"},
+            {"data": [28, 48, 40, 19, 86, 27, 90,28, 48, 40, 19, 86, 27], "label": "Country B"},
+            {"data": [18, 48, 77, 9, 100, 27, 40,18, 48, 77, 9, 100, 27], "label": "Country C"}
+            ],
+         "lineChartLabels": ["January", "February", "March", "April", "May", "June", "July","August","September","October","November","December"]
+
+    }
