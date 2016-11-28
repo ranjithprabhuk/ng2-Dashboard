@@ -1,1 +1,0 @@
-//# sourceMappingURL=ng2-table.component.js.map
