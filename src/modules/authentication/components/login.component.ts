@@ -29,13 +29,7 @@ export class LoginComponent {
         if (data && data.username && data.password) {
             //call the authService to chekc the credentials
             this.authService.login(data).then(res => {
-
-
-
-                //set isLogin as true
-                //this.authService.isLoggedIn = true;
                 console.log("response>>", res);
-                //console.log("status>>",this.authService.isLoggedIn);
                 this.router.navigate(['/dashboard']);
             }).catch(err => err);
         }
