@@ -1,31 +1,58 @@
-# Ng2Dashboard
+# Ng2-Dashboard
+Ng2-Dashboard is a web dashboard application based on Bootstrap and Angular 2. 
+All components included in this dashboard template has been developed to bring all the potential of HTML5 and Bootstrap plus a set of new features (JS and CSS) ideal for your next dashboard admin theme or admin web app project. Angular Bootstrap Dashboard can be used in any type of web applications dashboard. 
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.21.
+## Ng2-Dashboard
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* [Demo] (http://dashboard.ranjithprabhu.in)
 
-## Code scaffolding
+* [Download Source]  (https://github.com/ranjithprabhuk/Angular-Bootstrap-Dashboard/archive/master.zip)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
+* Username: admin@test.com
 
-## Build
+* Password: admin
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Features
+* Multiple Themes (yet to be implemented)
+* Multiple Layouts (yet to be implemented)
+* Works in All Modern Browsers
 
-## Running unit tests
+## Plugins Integrated
+* jQuery
+* jQuery Knob
+* Chart.js
+* Owl Carousel
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Installation
 
-## Running end-to-end tests
+1. A recommended way to install ***ng2-dashboard*** is through [npm](https://www.npmjs.com/) package manager using the following command:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+  ```
+  npm install 
+  ```
 
-## Deploying to Github Pages
+  It will install all the packages from the npm repository.
+  
+2. Use the following command to run the application
 
-Run `ng github-pages:deploy` to deploy to Github Pages.
+	```
+	npm start
+	```
 
-## Further help
+It will install all the packages from the npm repository.
 
-To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+3. Ng2-Dashboard will accessible in http://localhost:4200/
+
+
+## Documentation
+
+- yet to be given
+
+## About Author
+* [Author URL] (http://ranjithprabhu.in)
+
+I am passionate in playing with pixels, creating attractive designs which interact well with the user and love developing web apps. Have a good background in web design and development. Also having wonderful working experience with various interesting projects and participated in the development of the products to provide end to end solutions.
+
+
+## License
+Released under the MIT license.
