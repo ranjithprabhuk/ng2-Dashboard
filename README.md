@@ -2,7 +2,7 @@
 Ng2-Dashboard is a web dashboard application based on Bootstrap and Angular 2. 
 All components included in this dashboard template has been developed to bring all the potential of HTML5 and Bootstrap plus a set of new features ideal for your next dashboard admin theme or admin web app project. Angular Bootstrap Dashboard can be used in any type of web applications dashboard. 
 
-## Ng2-Dashboard
+## Demo
 
 * [Demo] (https://ranjithprabhuk.github.io/ng2-Dashboard/)
 
@@ -41,7 +41,6 @@ All components included in this dashboard template has been developed to bring a
 	npm start
 	```
 
-	It will install all the packages from the npm repository.
 
 3. Ng2-Dashboard will accessible in http://localhost:4200/
 
