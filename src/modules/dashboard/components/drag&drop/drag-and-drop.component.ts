@@ -64,7 +64,7 @@ export class DragAndDropComponent {
     //music data for drag and drop
     public musicList: string[] = ["Song 1", "Song 2", "Song 3","Song 5","Song 8","Song 9"];
     public playList: string[] = ["Song 4","Song 10"];
-    public favouriteListList: string[] = ["Song 6","Song 7"];
+    public favouriteList: string[] = ["Song 6","Song 7"];
 
     //vegetables and fruit and data
     public vegetablesList: string[] = ["Carrot", "Cucumber", "Tomato","Raddish"];

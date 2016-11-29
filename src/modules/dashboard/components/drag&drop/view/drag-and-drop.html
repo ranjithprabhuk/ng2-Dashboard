@@ -18,16 +18,10 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Quick Example</h3>
+                    <h3 class="box-title">Songs List</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <div class='container' [dragula]='"first-bag"'>
-                        <div *ngFor="let song of musicList">{{song}}</div>
-                        <div>You can move these elements between these two containers</div>
-                        <div>Moving them anywhere else isn't quite possible</div>
-                        <div>There's also the possibility of moving elements around in the same container, changing their position</div>
-                    </div>
                     <ul class="list-group" [dragula]='"song-list"'>
                         <li class="list-group-item" *ngFor="let song of musicList">{{song}}</li>
                     </ul>
@@ -39,16 +33,78 @@
         <!--/.col (left) -->
 
         <!-- middle column -->
-        <div class="col-md-6">
+        <div class="col-md-3">
             <!-- general form elements -->
-            <div class="box box-primary">
+            <div class="box box-warning">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Quick Example</h3>
+                    <h3 class="box-title">My Playlist</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <ul class="list-group" [dragula]='"song-list"'>
-                        <li class="list-group-item" *ngFor="let song of musicList">{{song}}</li>
+                        <li class="list-group-item" *ngFor="let song of playList">{{song}}</li>
+                    </ul>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (middle) -->
+
+        
+        <!-- right column -->
+        <div class="col-md-3">
+            <!-- Horizontal Form -->
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">My Favourites</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <ul class="list-group" [dragula]='"song-list"'>
+                        <li class="list-group-item" *ngFor="let song of favouriteList">{{song}}</li>
+                    </ul>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (right) -->
+    </div>
+    <!-- /.row -->
+    <hr style="border: 2px solid #aaa;">
+
+        <div class="row">
+        <!-- left column -->
+        <div class="col-md-3">
+            <!-- general form elements -->
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Vegetables List</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <ul class="list-group" [dragula]='"salad-list"'>
+                        <li class="list-group-item" *ngFor="let item of vegetablesList">{{item}}</li>
+                    </ul>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (left) -->
+
+        <!-- middle column -->
+        <div class="col-md-3">
+            <!-- general form elements -->
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Fruits List</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <ul class="list-group" [dragula]='"salad-list"'>
+                        <li class="list-group-item" *ngFor="let item of fruitsList">{{item}}</li>
                     </ul>
                 </div>
                 <!-- /.box-body -->
@@ -63,157 +119,13 @@
             <!-- Horizontal Form -->
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Horizontal Form</h3>
+                    <h3 class="box-title">Prepare Your Salad</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <div class='container' [dragula]='"second-bag"'>
-                        <div>This is the default use case. You only need to specify the containers you want to use</div>
-                        <div>More interactive use cases lie ahead</div>
-                        <div>Make sure to check out the <a href='https://github.com/bevacqua/dragula#readme'>documentation on GitHub!</a></div>
-                    </div>
-                </div>
-                <!-- /.box-body -->
-            </div>
-            <!-- /.box -->
-            <!-- general form elements disabled -->
-            <div class="box box-warning">
-                <div class="box-header with-border">
-                    <h3 class="box-title">General Elements</h3>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <form role="form">
-                        <!-- text input -->
-                        <div class="form-group">
-                            <label>Text</label>
-                            <input type="text" class="form-control" placeholder="Enter ...">
-                        </div>
-                        <div class="form-group">
-                            <label>Text Disabled</label>
-                            <input type="text" class="form-control" placeholder="Enter ..." disabled>
-                        </div>
-
-                        <!-- textarea -->
-                        <div class="form-group">
-                            <label>Textarea</label>
-                            <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Textarea Disabled</label>
-                            <textarea class="form-control" rows="3" placeholder="Enter ..." disabled></textarea>
-                        </div>
-
-                        <!-- input states -->
-                        <div class="form-group has-success">
-                            <label class="control-label" for="inputSuccess"><i class="fa fa-check"></i> Input with success</label>
-                            <input type="text" class="form-control" id="inputSuccess" placeholder="Enter ...">
-                            <span class="help-block">Help block with success</span>
-                        </div>
-                        <div class="form-group has-warning">
-                            <label class="control-label" for="inputWarning"><i class="fa fa-bell-o"></i> Input with
-                    warning</label>
-                            <input type="text" class="form-control" id="inputWarning" placeholder="Enter ...">
-                            <span class="help-block">Help block with warning</span>
-                        </div>
-                        <div class="form-group has-error">
-                            <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input with
-                    error</label>
-                            <input type="text" class="form-control" id="inputError" placeholder="Enter ...">
-                            <span class="help-block">Help block with error</span>
-                        </div>
-
-                        <!-- checkbox -->
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <label>
-                      <input type="checkbox">
-                      Checkbox 1
-                    </label>
-                            </div>
-
-                            <div class="checkbox">
-                                <label>
-                      <input type="checkbox">
-                      Checkbox 2
-                    </label>
-                            </div>
-
-                            <div class="checkbox">
-                                <label>
-                      <input type="checkbox" disabled>
-                      Checkbox disabled
-                    </label>
-                            </div>
-                        </div>
-
-                        <!-- radio -->
-                        <div class="form-group">
-                            <div class="radio">
-                                <label>
-                      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                      Option one is this and that&mdash;be sure to include why it's great
-                    </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                      Option two can be something else and selecting it will deselect option one
-                    </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                      <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
-                      Option three is disabled
-                    </label>
-                            </div>
-                        </div>
-
-                        <!-- select -->
-                        <div class="form-group">
-                            <label>Select</label>
-                            <select class="form-control">
-                    <option>option 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
-                  </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Select Disabled</label>
-                            <select class="form-control" disabled>
-                    <option>option 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
-                  </select>
-                        </div>
-
-                        <!-- Select multiple-->
-                        <div class="form-group">
-                            <label>Select Multiple</label>
-                            <select multiple class="form-control">
-                    <option>option 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
-                  </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Select Multiple Disabled</label>
-                            <select multiple class="form-control" disabled>
-                    <option>option 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
-                  </select>
-                        </div>
-
-                    </form>
+                    <ul class="list-group" [dragula]='"salad-list"'>
+                        <li class="list-group-item" *ngFor="let item of salads">{{item}}</li>
+                    </ul>
                 </div>
                 <!-- /.box-body -->
             </div>
