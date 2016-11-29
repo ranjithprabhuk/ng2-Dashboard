@@ -18,6 +18,7 @@ import { InboxComponent } from './components/mailbox/inbox.component';
 import { Ng2ChartComponent } from './components/chart/ng2-chart.component';
 import { SimpleNotificationComponent } from './components/notifications/notification.component';
 import { GoogleMapComponent } from './components/maps/google-map.component';
+import { GoogleChartComponent } from './components/chart/ng2-google-chart.component';
 
 
 
@@ -49,6 +50,7 @@ const DashboardRoutes: Routes = [
       { path: 'form-general', component: FormGeneralComponent },
     { path: 'ng2-notifications', component: SimpleNotificationComponent },
      { path: 'google-maps', component: GoogleMapComponent },
+     { path: 'google-charts', component: GoogleChartComponent },
       { path: '**', component: HomeComponent } //if path not found, default HomeComponent will be loaded
     ]
   },
