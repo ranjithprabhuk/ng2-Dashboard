@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 //import { CanDeactivateGuard } from '../can-deactivate-guard.service';
-import { AuthGuard }          from '../../modules/authentication/auth-guard.service';
+import { AuthGuard } from '../../modules/authentication/auth-guard.service';
 //import { PreloadSelectedModules } from '../selective-preload-strategy';
 
 import { DashBoardComponent } from './components/dashboard/dashboard.component';
@@ -20,15 +20,17 @@ import { SimpleNotificationComponent } from './components/notifications/notifica
 import { GoogleMapComponent } from './components/maps/google-map.component';
 import { GoogleChartComponent } from './components/chart/ng2-google-chart.component';
 
+import { Ng2DataTableComponent } from './components/table/ng2-table.component';
+
 
 
 const DashboardRoutes: Routes = [
   {
-    path: 'dashboard', component: DashBoardComponent,canActivate:[AuthGuard],
+    path: 'dashboard', component: DashBoardComponent, canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: '/dashboard/home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent ,canActivateChild: [AuthGuard]},
-      { path: 'widgets', component: WidgetComponent ,canActivateChild: [AuthGuard]},
+      { path: 'home', component: HomeComponent, canActivateChild: [AuthGuard] },
+      { path: 'widgets', component: WidgetComponent, canActivateChild: [AuthGuard] },
       {
         path: 'mailbox',
         component: MailBoxComponent,
@@ -44,13 +46,14 @@ const DashboardRoutes: Routes = [
           }
         ]
       },
-     { path: 'ng2-charts', component: Ng2ChartComponent ,canActivateChild: [AuthGuard]},
-      { path: 'form-editors', component: FormEditorsComponent,canActivateChild: [AuthGuard] },
+      { path: 'ng2-charts', component: Ng2ChartComponent, canActivateChild: [AuthGuard] },
+      { path: 'form-editors', component: FormEditorsComponent, canActivateChild: [AuthGuard] },
       { path: 'form-advanced', component: FormAdvancedComponent },
       { path: 'form-general', component: FormGeneralComponent },
-    { path: 'ng2-notifications', component: SimpleNotificationComponent },
-     { path: 'google-maps', component: GoogleMapComponent },
-     { path: 'google-charts', component: GoogleChartComponent },
+      { path: 'ng2-notifications', component: SimpleNotificationComponent },
+      { path: 'google-maps', component: GoogleMapComponent },
+      { path: 'google-charts', component: GoogleChartComponent },
+      { path: 'ng2-data-table', component: Ng2DataTableComponent },
       { path: '**', component: HomeComponent } //if path not found, default HomeComponent will be loaded
     ]
   },
