@@ -11,6 +11,7 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { Ng2TableModule } from 'ng2-table';
+import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 
 import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { TabsModule } from 'ng2-bootstrap/ng2-bootstrap';
@@ -36,6 +37,7 @@ import { GoogleMapComponent } from './components/maps/google-map.component';
 import { GoogleChartComponent } from './components/chart/ng2-google-chart.component';
 
 import { Ng2DataTableComponent } from './components/table/ng2-table.component';
+import { DragAndDropComponent } from './components/drag&drop/drag-and-drop.component';
 
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
@@ -53,13 +55,15 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     Ng2TableModule,
     PaginationModule,
     TabsModule,
+    DragulaModule,
     SimpleNotificationsModule,
     DashboardRoutingModule
   ],
   declarations: [
     HeaderComponent, SidebarComponent, RightSidebarComponent, FooterComponent, DashBoardComponent, HomeComponent,
     WidgetComponent, FormEditorsComponent, FormAdvancedComponent, FormGeneralComponent,MailBoxComponent, ComposeMailComponent,
-    ReadMailComponent, InboxComponent, Ng2ChartComponent, SimpleNotificationComponent, GoogleMapComponent, GoogleChartComponent,Ng2DataTableComponent
+    ReadMailComponent, InboxComponent, Ng2ChartComponent, SimpleNotificationComponent, GoogleMapComponent, GoogleChartComponent,
+    Ng2DataTableComponent, DragAndDropComponent
   ],
   providers:[ApiService]
 })

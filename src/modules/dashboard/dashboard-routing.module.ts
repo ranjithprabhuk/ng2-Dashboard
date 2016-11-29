@@ -21,6 +21,7 @@ import { GoogleMapComponent } from './components/maps/google-map.component';
 import { GoogleChartComponent } from './components/chart/ng2-google-chart.component';
 
 import { Ng2DataTableComponent } from './components/table/ng2-table.component';
+import { DragAndDropComponent } from './components/drag&drop/drag-and-drop.component';
 
 
 
@@ -54,6 +55,7 @@ const DashboardRoutes: Routes = [
       { path: 'google-maps', component: GoogleMapComponent },
       { path: 'google-charts', component: GoogleChartComponent },
       { path: 'ng2-data-table', component: Ng2DataTableComponent },
+      { path: 'drag-and-drop', component: DragAndDropComponent },
       { path: '**', component: HomeComponent } //if path not found, default HomeComponent will be loaded
     ]
   },

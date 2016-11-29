@@ -26,6 +26,8 @@ export class Ng2DataTableComponent implements OnInit {
   public numPages:number = 1;
   public length:number = 0;
 
+  public items:number[] = [10,20,30,40,50,100];
+
   public config:any = {
     paging: true,
     sorting: {columns: this.columns},
