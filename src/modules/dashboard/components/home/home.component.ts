@@ -6,5 +6,14 @@ import {Component} from '@angular/core';
 })
 
 export class HomeComponent {
-    
+    location = {};
+   setPosition(position){
+      this.location = position.coords;
+      console.log(position.coords);
+      }
+ngOnInit(){
+   if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
+      };
+   }
 }
