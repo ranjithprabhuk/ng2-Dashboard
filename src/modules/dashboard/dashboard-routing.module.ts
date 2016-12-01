@@ -19,6 +19,7 @@ import { Ng2ChartComponent } from './components/chart/ng2-chart.component';
 import { SimpleNotificationComponent } from './components/notifications/notification.component';
 import { GoogleMapComponent } from './components/maps/google-map.component';
 import { GoogleChartComponent } from './components/chart/ng2-google-chart.component';
+import { LeafletMapComponent  } from './components/maps/leaflet-map.component';
 
 import { Ng2DataTableComponent } from './components/table/ng2-table.component';
 import { DragAndDropComponent } from './components/drag&drop/drag-and-drop.component';
@@ -53,6 +54,7 @@ const DashboardRoutes: Routes = [
       { path: 'form-general', component: FormGeneralComponent },
       { path: 'ng2-notifications', component: SimpleNotificationComponent },
       { path: 'google-maps', component: GoogleMapComponent },
+      { path: 'leaflet-maps', component: LeafletMapComponent },
       { path: 'google-charts', component: GoogleChartComponent },
       { path: 'ng2-data-table', component: Ng2DataTableComponent },
       { path: 'drag-and-drop', component: DragAndDropComponent },
