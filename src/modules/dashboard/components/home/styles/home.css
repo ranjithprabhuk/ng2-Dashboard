@@ -1,0 +1,9 @@
+.list-group-item{
+    margin:4px;
+    border-radius:0px;
+    font-size:16px;
+}
+.list-group-item:hover{
+    background-color: #eee;
+    font-size:18px;
+}

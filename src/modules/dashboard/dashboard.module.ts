@@ -42,6 +42,8 @@ import { DragAndDropComponent } from './components/drag&drop/drag-and-drop.compo
 import { CandTLeafletComponent  } from 'angular2.leaflet.components';
 import { LeafletMapComponent  } from './components/maps/leaflet-map.component';
 
+import { TimeComponent  } from './components/time/time.component';
+
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
 @NgModule({
@@ -65,7 +67,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     HeaderComponent, SidebarComponent, RightSidebarComponent, FooterComponent, DashBoardComponent, HomeComponent,
     WidgetComponent, FormEditorsComponent, FormAdvancedComponent, FormGeneralComponent,MailBoxComponent, ComposeMailComponent,
     ReadMailComponent, InboxComponent, Ng2ChartComponent, SimpleNotificationComponent, GoogleMapComponent, GoogleChartComponent,
-    Ng2DataTableComponent, DragAndDropComponent, CandTLeafletComponent, LeafletMapComponent
+    Ng2DataTableComponent, DragAndDropComponent, CandTLeafletComponent, LeafletMapComponent, TimeComponent
   ],
   providers:[ApiService]
 })
