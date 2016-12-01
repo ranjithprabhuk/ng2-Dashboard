@@ -9,6 +9,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class ApiService {
     private apiBase = new AppConfig().apiBase;
+    private externalApiForWeather = new AppConfig().weatherApiBase;
     private headers = new Headers({ 'Content-Type': 'application/json' });
 
     constructor(private http: Http) { }
@@ -44,6 +45,15 @@ export class ApiService {
         return this.http.delete(this.apiBase + module + parameter, this.headers)
             .toPromise()
             .then(res => res.json().data)
+            .catch(this.handleError);
+    }
+
+    //to get weather dta from external api
+    getWeatherData(module: string, parameter?: URLSearchParams): Promise<any> {
+        return this.http
+            .get(this.externalApiForWeather + module, { search: parameter, headers: this.headers })
+            .toPromise()
+            .then(response => response.json())
             .catch(this.handleError);
     }
 
