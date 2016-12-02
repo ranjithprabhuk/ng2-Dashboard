@@ -29,10 +29,8 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="chart">
-                                <!-- Leaflet Map -->
-                                <leaflet-weather></leaflet-weather>
-                            </div>
+                            <!-- Leaflet Map -->
+                            <leaflet-weather></leaflet-weather>
                             <!-- /.leaflet map -->
                         </div>
                     </div>
@@ -63,15 +61,13 @@
                     <div class="row">
                         <!-- Circle maker col -->
                         <div class="col-md-12">
-                            <div class="chart">
-                                <!-- Leaflet Map -->
-                                <leaf-element [lat]="lat" [lon]="lng" [zoom]="zoom" [minZoom]="minZoom" [maxZoom]="maxZoom">
-                                    <layer-element [slippyLayer]="'http://{s}.tile.osm.org/{z}/{x}/{y}.png'">
-                                    </layer-element>
-                                    <circle-element [lat]="lat" [lon]="lng" [radius]="circleRadius" [Options]="circleOptions">
-                                    </circle-element>
-                                </leaf-element>
-                            </div>
+                            <!-- Leaflet Map -->
+                            <leaf-element [lat]="lat" [lon]="lng" [zoom]="zoom" [minZoom]="minZoom" [maxZoom]="maxZoom">
+                                <layer-element [slippyLayer]="'http://{s}.tile.osm.org/{z}/{x}/{y}.png'">
+                                </layer-element>
+                                <circle-element [lat]="lat" [lon]="lng" [radius]="circleRadius" [Options]="circleOptions">
+                                </circle-element>
+                            </leaf-element>
                             <!-- /.leaflet map -->
                         </div>
                         <!-- /.Circle maker col -->
@@ -89,8 +85,7 @@
                     <h3 class="box-title">Google Maps - Create Markers on Click</h3>
 
                     <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                         <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                     </div>
                 </div>
@@ -99,11 +94,13 @@
                     <div class="row">
                         <!-- polygon maker col -->
                         <div class="col-md-12">
-                            <div class="chart">
-                                <!-- Google Map -->
-                                <leaf-element [lat]=40 [lon]=-72 [zoom]=10 [minZoom]=2 [maxZoom]=25>
-                                </leaf-element>
-                            </div>
+                            <!-- Leaflet Map -->
+                            <leaf-element [lat]="lat" [lon]="lng" [zoom]="zoom" [minZoom]="minZoom" [maxZoom]="maxZoom">
+                                <layer-element [slippyLayer]="'http://{s}.tile.osm.org/{z}/{x}/{y}.png'">
+                                </layer-element>
+                                <polygon-element [latlngs]="[[52.65, -1.2],[52.645, -1.15], [52.696, -1.155], [52.697, -1.189]]">
+                                </polygon-element>
+                            </leaf-element>
                             <!-- /.leaflet map -->
                         </div>
                         <!-- /.polygon maker col -->
