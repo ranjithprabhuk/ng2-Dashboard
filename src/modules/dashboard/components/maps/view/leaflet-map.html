@@ -82,7 +82,7 @@
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Google Maps - Create Markers on Click</h3>
+                    <h3 class="box-title">Leaflet Maps - Polygon Marker</h3>
 
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -95,11 +95,77 @@
                         <!-- polygon maker col -->
                         <div class="col-md-12">
                             <!-- Leaflet Map -->
-                            <leaf-element [lat]="lat" [lon]="lng" [zoom]="zoom" [minZoom]="minZoom" [maxZoom]="maxZoom">
+                            <leaf-element [lat]="lat" [lon]="lng" [zoom]="zoom">
                                 <layer-element [slippyLayer]="'http://{s}.tile.osm.org/{z}/{x}/{y}.png'">
                                 </layer-element>
-                                <polygon-element [latlngs]="[[52.65, -1.2],[52.645, -1.15], [52.696, -1.155], [52.697, -1.189]]">
+                                <polygon-element [latlngs]="[[lat+0.1, lng+0.2],[lat-0.1, lng-0.2], [lat+0.05, lng-0.22], [lat+0.2, lng-0.1]]">
                                 </polygon-element>
+                            </leaf-element>
+                            <!-- /.leaflet map -->
+                        </div>
+                        <!-- /.polygon maker col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+
+        <div class="col-md-6">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Leaflet Maps - Popup</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <!-- popup maker col -->
+                        <div class="col-md-12">
+                            <!-- Leaflet Map -->
+                            <leaf-element [lat]="lat" [lon]="lng" [zoom]="zoom">
+                                <layer-element [slippyLayer]="'http://{s}.tile.osm.org/{z}/{x}/{y}.png'">
+                                </layer-element>
+                                <circle-element [lat]="lat" [lon]="lng" [radius]="circleRadius*50" [mouseover]="'Hi, you are seeing a popup!'"></circle-element>
+                            </leaf-element>
+                            <!-- /.leaflet map -->
+                        </div>
+                        <!-- /.polygon maker col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+
+        <div class="col-md-6">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Leaflet Maps - Multiple Items</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <!-- polygon maker col -->
+                        <div class="col-md-12">
+                            <!-- Leaflet Map -->
+                            <leaf-element [lat]="lat" [lon]="lng" [zoom]="zoom">
+                                <layer-element [slippyLayer]="'http://{s}.tile.osm.org/{z}/{x}/{y}.png'">
+                                </layer-element>
+                                    <circle-element [lat]="lat-0.1" [lon]="lng" [radius]="circleRadius*70" [Options]="{color:'red', weight:1}"></circle-element>
+                                    <circle-element [lat]="lat+0.3" [lon]="lng+0.1" [radius]="circleRadius*20" [Options]="{color:'green', weight:6}"></circle-element>
+                                    <polygon-element [latlngs]="[[lat+0.1, lng+0.2],[lat-0.1, lng-0.2], [lat+0.05, lng-0.22], [lat+0.2, lng-0.1]]"></polygon-element>
                             </leaf-element>
                             <!-- /.leaflet map -->
                         </div>
