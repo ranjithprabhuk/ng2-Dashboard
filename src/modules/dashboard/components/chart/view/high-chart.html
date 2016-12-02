@@ -1,0 +1,51 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Highchart
+    <small>Version 2.0</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a routerLink="/dashboard/home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li class="active">High-Chart</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <!-- Chart boxes -->
+  <div class="row">
+    <!--column chart column -->
+    <div class="col-md-6">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Line Chart</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-default" (click)="randomData();"><i class="fa fa-download"></i> Random data </button>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="chart" *ngIf="options">
+                <!-- line Chart Canvas -->
+                <chart [options]="options"></chart>
+              </div>
+              <!-- /.chart-responsive -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- ./box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.column chart column -->
+  </div>
+  <!-- /.row -->
+</section>
+<!-- /.content -->
