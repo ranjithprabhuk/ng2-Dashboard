@@ -10,7 +10,7 @@ export class ChartService {
 
     constructor(private apiService: ApiService) { }
 
-    protected module: string = "weather/";
+    protected module: string = "chart/";
 
     //to get the chart data
     getChartData(endPoint:string,parameter?:any): Promise<any> {

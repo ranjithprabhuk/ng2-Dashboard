@@ -41,7 +41,7 @@ export class GoogleChartComponent {
     ],
     options: {
       animation: {easing: 'out'},
-      width: 150, height: 150,
+      width: 250, height: 250,
       greenFrom: 1, greenTo: 4,
       minorTicks: 5,
       min: 0, max: 5,
@@ -68,6 +68,64 @@ export class GoogleChartComponent {
       legend: 'none'
     }
   };
+
+  public line_ChartData = [
+             ['Year', 'Sales', 'Expenses'],
+             ['2004',  1000,      400],
+             ['2005',  1170,      460],
+             ['2006',  660,       1120],
+             ['2007',  1030,      540]];
+      public bubble_ChartData = [
+           ['ID', 'Life Expectancy', 'Fertility Rate', 'Region',     'Population'],
+           ['CAN',    80.66,              1.67,      'North America',  33739900],
+           ['DEU',    79.84,              1.36,      'Europe',         81902307],
+           ['DNK',    78.6,               1.84,      'Europe',         5523095],
+           ['EGY',    72.73,              2.78,      'Middle East',    79716203],
+           ['GBR',    80.05,              2,         'Europe',         61801570],
+           ['IRN',    72.49,              1.7,       'Middle East',    73137148],
+           ['IRQ',    68.09,              4.77,      'Middle East',    31090763],
+           ['ISR',    81.55,              2.96,      'Middle East',    7485600],
+           ['RUS',    68.6,               1.54,      'Europe',         141850000],
+           ['USA',    78.09,              2.05,      'North America',  307007000]];
+
+      public candle_ChartData = [
+             ['Day','Low','Opening value','Closing value','High'],
+             ['Mon', 28, 28, 38, 38],
+             ['Tue', 38, 38, 55, 55],
+             ['Wed', 55, 55, 77, 77],
+             ['Thu', 77, 77, 66, 66],
+             ['Fri', 66, 66, 22, 22]
+           ];
+
+       public line_ChartOptions = {
+         title: 'Company Performance',
+         dataTable: this.line_ChartData,
+         curveType: 'function',
+         legend: { position: 'bottom'
+         }
+       };
+
+       public bubble_ChartOptions= {
+         title: 'Correlation between life expectancy, fertility rate ' +
+                       'and population of some world countries (2010)',
+                       dataTable:this.bubble_ChartData,
+                hAxis: {title: 'Life Expectancy'},
+                vAxis: {title: 'Fertility Rate'},
+                bubble: {textStyle: {fontSize: 11}}
+
+       };
+       public candle_ChartOptions = {
+         dataTable:this.candle_ChartData,
+         legend: 'none',
+                  bar: { groupWidth: '100%' }, // Remove space between bars.
+                  candlestick: {
+                    fallingColor: { strokeWidth: 0, fill: '#a52714' }, // red
+                    risingColor: { strokeWidth: 0, fill: '#0f9d58' }   // green
+                  }
+       };
+
+
+
 
   constructor() { }
 

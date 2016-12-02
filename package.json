@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "2.2.1",
     "@angular/router": "3.2.1",
     "angular2-google-maps": "^0.16.0",
+    "angular2-highcharts": "^0.4.1",
     "angular2-notifications": "^0.4.47",
     "angular2.leaflet.components": "^1.2.1",
     "bootstrap": "^3.3.7",
