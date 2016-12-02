@@ -19,7 +19,13 @@ export class GoogleChartComponent {
       ['France', 600, 1100],
       ['RU', 800, 1000]
     ],
-    options: { 'title': 'Countries' },
+    options: {
+      'title': 'Countries',
+      animation: {
+        duration: 200,
+        easing: 'inAndOut',
+      }
+    },
   };
 
   //pie chart options
@@ -33,7 +39,13 @@ export class GoogleChartComponent {
       ['Watch TV', 2],
       ['Sleep', 7]
     ],
-    options: { 'title': 'Tasks' },
+    options: {
+      'title': 'Tasks',
+      animation: {
+        duration: 200,
+        easing: 'inAndOut',
+      }
+    },
   };
 
   //gauge chart options
@@ -44,8 +56,8 @@ export class GoogleChartComponent {
       ['Value', 1.78]
     ],
     options: {
-      animation: { easing: 'out' },
-      width: 250, height: 250,
+      animation: { easing: 'out' ,duration:100},
+      width: 200, height: 200,
       greenFrom: 1, greenTo: 4,
       minorTicks: 5,
       min: 0, max: 5,
@@ -92,7 +104,7 @@ export class GoogleChartComponent {
 
   //bubble chart options
   bubbleChartOptions = {
-    chartType: 'Bubble',
+    chartType: 'BubbleChart',
     dataTable: [
       ['ID', 'Life Expectancy', 'Fertility Rate', 'Region', 'Population'],
       ['CAN', 80.66, 1.67, 'North America', 33739900],
@@ -113,7 +125,7 @@ export class GoogleChartComponent {
 
   //candle chart options
   candleChartOptions = {
-    chartType: 'Candlestick',
+    chartType: 'CandlestickChart',
     dataTable: [
       ['Day', 'Low', 'Opening value', 'Closing value', 'High'],
       ['Mon', 28, 28, 38, 38],
@@ -132,9 +144,6 @@ export class GoogleChartComponent {
     },
   };
 
-  constructor() { }
-
-
   //generate random data
   randomData() {
     // forces a reference update (otherwise angular doesn't detect the change)
@@ -146,4 +155,5 @@ export class GoogleChartComponent {
         Math.random() * 1000);
     }
   }
+
 }
