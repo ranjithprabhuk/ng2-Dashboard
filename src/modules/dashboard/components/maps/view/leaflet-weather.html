@@ -1,0 +1,13 @@
+<!-- Leaflet Map -->
+<leaf-element [lat]="lat" [lon]="lng" [zoom]="zoom" [maxZoom]="maxZoom">
+    <layer-element [slippyLayer]="'http://{s}.tile.osm.org/{z}/{x}/{y}.png'">
+    </layer-element>
+    <marker-element [lat]="lat" [lon]="lng" [mouseover]="'Sunny'" iconUrl="assets/img/weather/sun.png">
+    </marker-element>
+    <marker-element [lat]="lat + 0.1" [lon]="lng + 0.2" [mouseover]="'Rainy'" iconUrl="assets/img/weather/rainy.png">
+    </marker-element>
+    <marker-element [lat]="lat - 0.2" [lon]="lng + 0.5" [mouseover]="'Cloudy'" iconUrl="assets/img/weather/cloudy.png">
+    </marker-element>
+    <marker-element [lat]="lat + 0.2" [lon]="lng + 0.9" [mouseover]="'Moderate'" iconUrl="assets/img/weather/moderate.png">
+    </marker-element>
+</leaf-element>

@@ -5,70 +5,24 @@
     <small>Version 2.0</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a><i class="fa fa-dashboard"></i> Home</a></li>
     <li class="active">Dashboard</li>
   </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
-
-  <!-- =========================================================== -->
-
   <!-- Small boxes (Stat box) -->
   <div class="row">
-    <div class="col-lg-3 col-xs-6">
+    <div class="col-lg-3 col-xs-6" *ngFor="let box of boxData">
       <!-- small box -->
-      <div class="small-box bg-aqua">
+      <div class="small-box bg-{{box.color}}">
         <div class="inner">
-          <h3>{{temperature}} <sup style="font-size: 20px">0</sup> </h3>
-
-          <p>Temperature</p>
+          <h3>{{box.value}} <sup style="font-size: 20px">{{box.symbol}}</sup></h3>
+          <p>{{box.label}}</p>
         </div>
         <div class="icon">
-          <i class="fa fa-thermometer-full"></i>
-        </div>
-      </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
-      <!-- small box -->
-      <div class="small-box bg-green">
-        <div class="inner">
-          <h3>{{visibility}} </h3>
-
-          <p>Visibility</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-sun-o"></i>
-        </div>
-      </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
-      <!-- small box -->
-      <div class="small-box bg-yellow">
-        <div class="inner">
-          <h3>{{humidity}} <sup style="font-size: 20px">%</sup> </h3>
-
-          <p>Humidity</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-tint"></i>
-        </div>
-      </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
-      <!-- small box -->
-      <div class="small-box bg-red">
-        <div class="inner">
-          <h3>{{windSpeed}} <sup style="font-size: 20px">m/s</sup> </h3>
-
-          <p>Wind Speed</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-mixcloud"></i>
+          <i class="fa {{box.icon}}"></i>
         </div>
       </div>
     </div>
@@ -80,49 +34,39 @@
     <div class="col-md-12">
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Monthly Recap Report</h3>
-
+          <h3 class="box-title">Weather Status</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
-            <div class="btn-group">
-              <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-wrench"></i></button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-              </ul>
-            </div>
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
           </div>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
           <div class="row">
-            <div class="col-md-8">
-              <p class="text-center">
-                <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
-              </p>
-
+            <div class="col-md-9">
               <div class="chart">
-                <!-- Sales Chart Canvas -->
-                <canvas id="salesChart" style="height: 180px;"></canvas>
+                <!-- Leaflet weather map -->
+                <leaflet-weather></leaflet-weather>
               </div>
-              <!-- /.chart-responsive -->
             </div>
             <!-- /.col -->
-            <div class="col-md-4">
+            <div class="col-md-3">
+              <h1 class="weather-title">Weather in Bangalore, IN</h1>
               <p class="text-center">
                 <live-time></live-time>
-                <strong>Weather Status</strong>
               </p>
-              <ul class="list-group" [dragula]='"song-list"'>
-                <li class="list-group-item" *ngFor="let song of musicList">{{song.a}} <span class="text-right">{{song.b}}</span></li>
-              </ul>
-
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                  <tbody>
+                    <tr *ngFor="let weather of weatherData">
+                      <td><a>{{weather.key}}</a></td>
+                      <td><span class="label label-{{weather.color}}">{{weather.value}}</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.table-responsive -->
             </div>
             <!-- /.col -->
           </div>
@@ -131,41 +75,16 @@
         <!-- ./box-body -->
         <div class="box-footer">
           <div class="row">
-            <div class="col-sm-3 col-xs-6">
+            <div class="col-sm-2 col-xs-4" *ngFor="let day of dayWeather">
               <div class="description-block border-right">
-                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
-                <h5 class="description-header">$35,210.43</h5>
-                <span class="description-text">TOTAL REVENUE</span>
+                <img src="{{day.url}}">
+                <div class="description-percentage text-{{day.color}}"><i class="fa fa-caret-{{day.iconDirection}}"></i>{{day.temperature}}</div>
+                <h5 class="description-header">{{day.windSpeed}}</h5>
+                <span class="description-text">{{day.status}}</span>
               </div>
               <!-- /.description-block -->
             </div>
             <!-- /.col -->
-            <div class="col-sm-3 col-xs-6">
-              <div class="description-block border-right">
-                <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
-                <h5 class="description-header">$10,390.90</h5>
-                <span class="description-text">TOTAL COST</span>
-              </div>
-              <!-- /.description-block -->
-            </div>
-            <!-- /.col -->
-            <div class="col-sm-3 col-xs-6">
-              <div class="description-block border-right">
-                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
-                <h5 class="description-header">$24,813.53</h5>
-                <span class="description-text">TOTAL PROFIT</span>
-              </div>
-              <!-- /.description-block -->
-            </div>
-            <!-- /.col -->
-            <div class="col-sm-3 col-xs-6">
-              <div class="description-block">
-                <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>
-                <h5 class="description-header">1200</h5>
-                <span class="description-text">GOAL COMPLETIONS</span>
-              </div>
-              <!-- /.description-block -->
-            </div>
           </div>
           <!-- /.row -->
         </div>
