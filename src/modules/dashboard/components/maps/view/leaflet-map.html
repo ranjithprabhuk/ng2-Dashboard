@@ -16,7 +16,7 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Simple Leaflet Map</h3>
+                    <h3 class="box-title">Leaflet Map with Markers</h3>
 
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -31,10 +31,7 @@
                         <div class="col-md-12">
                             <div class="chart">
                                 <!-- Leaflet Map -->
-                                <leaf-element [lat]="lat" [lon]="lng" [zoom]="zoom" [minZoom]="minZoom" [maxZoom]="maxZoom">
-                                    <layer-element [slippyLayer]="'http://{s}.tile.osm.org/{z}/{x}/{y}.png'">
-                                    </layer-element>
-                                </leaf-element>
+                                <leaflet-weather></leaflet-weather>
                             </div>
                             <!-- /.leaflet map -->
                         </div>
@@ -42,43 +39,6 @@
                     <!-- /.row -->
                 </div>
                 <!-- ./box-body -->
-                <div class="box-footer">
-                    <div class="row">
-                        <div class="col-sm-3 col-xs-6">
-                            <div class="description-block border-right">
-                                <span class="description-percentage text-red"><i class="fa fa-caret-up"></i> High Traffic</span>
-                                <h5 class="description-header">Bengaluru</h5>
-                            </div>
-                            <!-- /.description-block -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-3 col-xs-6">
-                            <div class="description-block border-right">
-                                <span class="description-percentage text-blue"><i class="fa fa-caret-up"></i> Moderate Traffic</span>
-                                <h5 class="description-header">Kumbalgodu</h5>
-                            </div>
-                            <!-- /.description-block -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-3 col-xs-6">
-                            <div class="description-block border-right">
-                                <span class="description-percentage text-yellow"><i class="fa fa-caret-down"></i> Low Traffic</span>
-                                <h5 class="description-header">White Field</h5>
-                            </div>
-                            <!-- /.description-block -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-3 col-xs-6">
-                            <div class="description-block">
-                                <span class="description-percentage text-green"><i class="fa fa-caret-down"></i> No Traffic</span>
-                                <h5 class="description-header">Electronic City</h5>
-                            </div>
-                            <!-- /.description-block -->
-                        </div>
-                    </div>
-                    <!-- /.row -->
-                </div>
-                <!-- /.box-footer -->
             </div>
             <!-- /.box -->
         </div>
@@ -90,7 +50,7 @@
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Google Maps - Editable Circle Marker</h3>
+                    <h3 class="box-title">Leaflet Maps - Circle Marker</h3>
 
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -105,7 +65,11 @@
                         <div class="col-md-12">
                             <div class="chart">
                                 <!-- Leaflet Map -->
-                                <leaf-element [lat]=40 [lon]=-72 [zoom]=10 [minZoom]=2 [maxZoom]=25>
+                                <leaf-element [lat]="lat" [lon]="lng" [zoom]="zoom" [minZoom]="minZoom" [maxZoom]="maxZoom">
+                                    <layer-element [slippyLayer]="'http://{s}.tile.osm.org/{z}/{x}/{y}.png'">
+                                    </layer-element>
+                                    <circle-element [lat]="lat" [lon]="lng" [radius]="circleRadius" [Options]="circleOptions">
+                                    </circle-element>
                                 </leaf-element>
                             </div>
                             <!-- /.leaflet map -->

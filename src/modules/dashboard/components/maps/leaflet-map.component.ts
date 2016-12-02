@@ -3,9 +3,9 @@ import { CandTLeafletService } from 'angular2.leaflet.components';
 
 
 @Component({
-    selector:'leafet-map',
-    templateUrl:'./view/leaflet-map.html',
-    providers:[CandTLeafletService]
+    selector: 'leafet-map',
+    templateUrl: './view/leaflet-map.html',
+    providers: [CandTLeafletService]
 })
 
 export class LeafletMapComponent {
@@ -15,4 +15,8 @@ export class LeafletMapComponent {
     public radius: number = 6000;
     public minZoom: number = 12.973425;
     public maxZoom: number = 77.591168;
+
+    //data for circle
+    public circleRadius: number = 500;
+    public circleOptions: any = { color: '#576887' };
 }
