@@ -20,6 +20,8 @@ import { SimpleNotificationComponent } from './components/notifications/notifica
 import { GoogleMapComponent } from './components/maps/google-map.component';
 import { GoogleChartComponent } from './components/chart/ng2-google-chart.component';
 import { LeafletMapComponent  } from './components/maps/leaflet-map.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { CarouselComponent } from './components/carosuel/carosuel.component';
 
 import { Ng2DataTableComponent } from './components/table/ng2-table.component';
 import { DragAndDropComponent } from './components/drag&drop/drag-and-drop.component';
@@ -60,6 +62,8 @@ const DashboardRoutes: Routes = [
       { path: 'ng2-data-table', component: Ng2DataTableComponent },
       { path: 'drag-and-drop', component: DragAndDropComponent },
       { path: 'high-charts', component: HighChartComponent},
+      { path: 'calendar', component: CalendarComponent},
+      { path: 'carousel', component: CarouselComponent},
       { path: '**', component: HomeComponent } //if path not found, default HomeComponent will be loaded
     ]
   },

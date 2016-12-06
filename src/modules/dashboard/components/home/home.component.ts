@@ -137,17 +137,12 @@ export class HomeComponent {
         //set the co-ordinates to location
         this.location = position.coords;
 
-        //get the weather data based on the position
-        this.homeService.getChartData(this.location).then(res => {
-            console.log("weater data>>",res);
-        }).catch(err =>err);
-
         console.log(this.location.latitude);
     }
 
     ngOnInit() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
-        };
+        // if (navigator.geolocation) {
+        //     navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
+        // };
     }
 }

@@ -12,16 +12,22 @@
 
 <!-- Main content -->
 <section class="content">
-  <!-- Chart boxes -->
+  <!-- weather Chart boxes -->
   <div class="row">
-    <!--simple line chart column -->
+    <!-- high chart for weather and rainfall component were added -->
+    <high-chart-weather></high-chart-weather>
+  </div>
+  <!-- /.row -->
+
+  <!-- Other Chart boxes -->
+  <div class="row">
+    <!--temperature chart column -->
     <div class="col-md-6">
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Line Chart</h3>
+          <h3 class="box-title">Population Chart</h3>
 
           <div class="box-tools pull-right">
-            <button type="button" class="btn btn-default" (click)="randomData();"><i class="fa fa-download"></i> Random data </button>
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
           </div>
@@ -30,9 +36,9 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-              <div class="chart" *ngIf="simpleLineChart">
-                <!-- line Chart Canvas -->
-                <chart [options]="simpleLineChart"></chart>
+              <div class="chart" *ngIf="populationChart">
+                <!-- temperature Chart Canvas -->
+                <chart [options]="populationChart"></chart>
               </div>
               <!-- /.chart-responsive -->
             </div>
@@ -44,16 +50,15 @@
       </div>
       <!-- /.box -->
     </div>
-    <!-- /.simple line chart column -->
+    <!-- /.temperature chart column -->
 
-    <!--Stock chart column -->
+    <!--bar chart column -->
     <div class="col-md-6">
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Line Chart</h3>
+          <h3 class="box-title">Stacked Bar Chart</h3>
 
           <div class="box-tools pull-right">
-            <button type="button" class="btn btn-default" (click)="randomData();"><i class="fa fa-download"></i> Random data </button>
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
           </div>
@@ -62,9 +67,9 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-              <div class="chart" *ngIf="stockChart">
-                <!-- stock Chart Canvas -->
-                <chart type="StockChart" [options]="stockChart"></chart>
+              <div class="chart" *ngIf="barChart">
+                <!-- bar Chart Canvas -->
+                <chart [options]="barChart"></chart>
               </div>
               <!-- /.chart-responsive -->
             </div>
@@ -76,7 +81,131 @@
       </div>
       <!-- /.box -->
     </div>
-    <!-- /.stock chart column -->
+    <!-- /.bar chart column -->
+
+    <!--pie chart column -->
+    <div class="col-md-6">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Stacked Bar Chart</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="chart" *ngIf="pieChart">
+                <!-- pie Chart Canvas -->
+                <chart [options]="pieChart"></chart>
+              </div>
+              <!-- /.chart-responsive -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- ./box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.pie chart column -->
+
+    <!--scatter chart column -->
+    <div class="col-md-6">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Sactter Chart</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="chart" *ngIf="scatterChart">
+                <!-- scatter Chart Canvas -->
+                <chart [options]="scatterChart"></chart>
+              </div>
+              <!-- /.chart-responsive -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- ./box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.scatter chart column -->
+
+    <!--combined chart column -->
+    <div class="col-md-6">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Combined Chart</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="chart" *ngIf="combinedChart">
+                <!-- combined Chart Canvas -->
+                <chart [options]="combinedChart"></chart>
+              </div>
+              <!-- /.chart-responsive -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- ./box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.combined chart column -->
+
+    <!--3d donut chart column -->
+    <div class="col-md-6">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">3d Donut Bar Chart</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="chart" *ngIf="donutChart">
+                <!-- donut Chart Canvas -->
+                <chart [options]="donutChart"></chart>
+              </div>
+              <!-- /.chart-responsive -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- ./box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.3d donut chart column -->
   </div>
   <!-- /.row -->
 </section>

@@ -13,6 +13,7 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { Ng2TableModule } from 'ng2-table';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 import { ChartModule } from 'angular2-highcharts';
+import { CalendarModule } from 'angular2-calendar';
 
 import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { TabsModule } from 'ng2-bootstrap/ng2-bootstrap';
@@ -31,6 +32,8 @@ import { ComposeMailComponent } from './components/mailbox/compose-mail.componen
 import { ReadMailComponent } from './components/mailbox/read-mail.component';
 import { MailBoxComponent } from './components/mailbox/mailbox.component';
 import { InboxComponent } from './components/mailbox/inbox.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { CarouselComponent } from './components/carosuel/carosuel.component';
 
 import { SimpleNotificationComponent } from './components/notifications/notification.component';
 import { ToastyComponent } from './components/notifications/ng2-toasty.component';
@@ -38,6 +41,7 @@ import { GoogleMapComponent } from './components/maps/google-map.component';
 
 import { Ng2ChartComponent } from './components/chart/ng2-chart.component';
 import { GoogleChartComponent } from './components/chart/ng2-google-chart.component';
+import { HighChartWeatherComponent } from './components/chart/highchart-weather.component';
 import { HighChartComponent } from './components/chart/highchart.component';
 
 import { Ng2DataTableComponent } from './components/table/ng2-table.component';
@@ -62,6 +66,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     AgmCoreModule.forRoot({
       apiKey: new AppConfig().googleMapApiKey
     }),
+    CalendarModule.forRoot(),
     Ng2GoogleChartsModule,
     Ng2TableModule,
     PaginationModule,
@@ -74,8 +79,9 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     HeaderComponent, SidebarComponent, RightSidebarComponent, FooterComponent, DashBoardComponent, HomeComponent,
     WidgetComponent, FormEditorsComponent, FormAdvancedComponent, FormGeneralComponent, MailBoxComponent, ComposeMailComponent,
     ReadMailComponent, InboxComponent, Ng2ChartComponent, SimpleNotificationComponent, GoogleMapComponent, GoogleChartComponent,
-    Ng2DataTableComponent, DragAndDropComponent, CandTLeafletComponent, LeafletMapComponent, TimeComponent, LeafletWeatherComponent, HighChartComponent
-  ],
+    Ng2DataTableComponent, DragAndDropComponent, CandTLeafletComponent, LeafletMapComponent, TimeComponent, LeafletWeatherComponent,
+    HighChartComponent, HighChartWeatherComponent, CalendarComponent, CarouselComponent
+    ],
   providers: [ApiService]
 })
 export class DashboardModule {

@@ -1,0 +1,61 @@
+    <!--temperature chart column -->
+    <div class="col-md-6">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Weather Chart</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="chart" *ngIf="temperatureChart">
+                <!-- temperature Chart Canvas -->
+                <chart [options]="temperatureChart"></chart>
+              </div>
+              <!-- /.chart-responsive -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- ./box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.temperature chart column -->
+
+    <!--rainfall chart column -->
+    <div class="col-md-6">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Rainfall Chart</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="chart" *ngIf="rainfallChart">
+                <!-- population Chart Canvas -->
+                <chart [options]="rainfallChart"></chart>
+              </div>
+              <!-- /.chart-responsive -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- ./box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.rainfall chart column -->
