@@ -1,3 +1,7 @@
+.cal-header{
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+}
 .cal-month-view .cal-header {
   text-align: center;
   font-weight: bolder; }

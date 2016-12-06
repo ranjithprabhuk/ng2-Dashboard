@@ -36,8 +36,7 @@ const colors: any = {
 
 @Component({
     selector: 'event-calendar',
-    templateUrl: './view/calendar.html',
-    styleUrls:['./styles/angular2-calendar.css']
+    templateUrl: './view/calendar.html'
 })
 
 

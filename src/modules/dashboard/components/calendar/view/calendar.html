@@ -17,28 +17,29 @@
             <div class="box box-primary">
                 <div class="box-body">
                     <!-- THE CALENDAR -->
-                    <div class="row text-center">
+                    <div class="row">
                         <div class="col-md-4">
                             <div class="btn-group">
-                                <div class="btn btn-primary" (click)="decrement()">
-                                    Previous
+                                <div class="btn btn-warning btn-sm" (click)="decrement()">
+                                    <span class="fa fa-angle-left"></span>
                                 </div>
-                                <div class="btn btn-default" (click)="today()">
+                                <div class="btn btn-default btn-sm" (click)="today()">
                                     Today
                                 </div>
-                                <div class="btn btn-primary" (click)="increment()">
-                                    Next
+                                <div class="btn btn-warning btn-sm" (click)="increment()">
+                                    <span class="fa fa-angle-right"></span>
                                 </div>
                             </div>
+
                         </div>
-                        <div class="col-md-4">
-                            <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+                        <div class="col-md-4 text-center">
+                            <h2 class="no-margin">{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h2>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 text-right">
                             <div class="btn-group">
-                                <div class="btn btn-primary" (click)="view = 'month'" [class.active]="view === 'month'">Month</div>
-                                <div class="btn btn-primary" (click)="view = 'week'" [class.active]="view === 'week'">Week</div>
-                                <div class="btn btn-primary" (click)="view = 'day'" [class.active]="view === 'day'">Day</div>
+                                <div class="btn btn-warning btn-sm" (click)="view = 'month'" [class.active]="view === 'month'">Month</div>
+                                <div class="btn btn-warning btn-sm" (click)="view = 'week'" [class.active]="view === 'week'">Week</div>
+                                <div class="btn btn-warning btn-sm" (click)="view = 'day'" [class.active]="view === 'day'">Day</div>
                             </div>
                         </div>
                     </div>
