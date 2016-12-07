@@ -624,8 +624,10 @@ a:focus {
     left: 50px;
   }
   .sidebar-menu > li:hover > a {
-      -webkit-transition: border-color 0s linear 0.1s;
-  transition: border-color 0s linear 0.1s;
+    -webkit-transition : border 0.2s ease-in-out;
+    transition : border 0.2s ease-in-out;  
+    -moz-transition : border 0.2s ease-in-out;
+    -o-transition : border 0.2s ease-in-out;
   }
   .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span {
     top: 0;
