@@ -4,17 +4,16 @@
 <head>
   <meta charset="utf-8">
   <title>Ng2-Dashboard</title>
-  <!--<script>document.write('<base href="' + document.location + '" />');</script>-->
-
-  <!-- Base Href -->
-  <base href="https://ranjithprabhuk.github.io/ng2-Dashboard/" />
-
+  <script>document.write('<base href="' + document.location + '" />');</script>
   <!-- CSS -->
   <link href="assets/css/bootstrap.css" rel="stylesheet">
   <link href="assets/css/skins.css" rel="stylesheet" />
   <link href="assets/css/dashboard.css" rel="stylesheet" />
   <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
   <link href="assets/css/site.css" rel="stylesheet" />
+  <link href="assets/css/leaflet.css" rel="stylesheet" />
+  <link href="assets/css/angular2-calendar.css" rel="stylesheet" />
+
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,14 +25,24 @@
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-purple sidebar-mini">
   <!-- wrapper -->
   <div class="wrapper">
-    <root-app>Loading...</root-app>
+    <root-app>
+      <!-- Initial Page Loader -->
+      <div class="loading">
+      </div>
+
+      <style>
+        .loading {
+          background: url('assets/img/weather/sun.png') no-repeat center center;
+        }
+      </style>>
+    </root-app>
   </div>
   <!-- ./wrapper -->
 
-  
+
 <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="styles.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script></body>
 
 </html>

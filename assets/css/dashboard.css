@@ -1,8 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
 /*!
- *   AdminLTE v2.3.6
- *   Author: Almsaeed Studio
- *	 Website: Almsaeed Studio <http://almsaeedstudio.com>
+ *   ng2-Dashboard
+ *   Author: Ranjithprabhu K
+ *	 Website: Ranjithprabhu K <http://ranjithprabhu.in>
  *   License: Open source - MIT
  *           Please visit http://opensource.org/licenses/MIT for more information
 !*/
@@ -622,6 +622,12 @@ a:focus {
     position: absolute;
     width: 180px;
     left: 50px;
+  }
+  .sidebar-menu > li:hover > a {
+    -webkit-transition : border 0.2s ease-in-out;
+    transition : border 0.2s ease-in-out;  
+    -moz-transition : border 0.2s ease-in-out;
+    -o-transition : border 0.2s ease-in-out;
   }
   .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span {
     top: 0;
